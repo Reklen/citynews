@@ -1,0 +1,14 @@
+<header>
+  <div class="logo"><%= link_to 'Capitolio NEWS', root_path %></div>
+  <nav>
+    <ul>
+      <% if session[:user_id] %>
+        <li><%= link_to 'log out', logout_path %></li>
+      <% else %>
+        <li>
+          <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
