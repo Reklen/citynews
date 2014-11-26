@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125204726) do
+ActiveRecord::Schema.define(version: 20141126102617) do
+
+  create_table "news", force: true do |t|
+    t.integer "user_id",                 null: false
+    t.string  "title",                   null: false
+    t.string  "description",             null: false
+    t.integer "like",        default: 0
+    t.integer "dislikes",    default: 0
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
