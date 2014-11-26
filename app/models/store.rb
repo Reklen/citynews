@@ -1,5 +1,7 @@
 class Store < ActiveRecord::Base
 	belongs_to :user
+	has_many :promotions
+	
 	validates_presence_of :name, :address, :phone
 	validates :phone, format: { with: /\d{2}-\d{4}-\d{4}/, message: "bad format" }
 	validates :website, :allow_blank => true,
