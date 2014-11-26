@@ -4,6 +4,7 @@
     <ul>
       <% if user_signed_in? %>
         <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+        <li><%= image_tag current_user.image %></li>
       <% else %>
         <li>
           <%= link_to "logar com Facebook", user_omniauth_authorize_path(:facebook) %>
