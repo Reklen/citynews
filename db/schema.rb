@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126142350) do
+ActiveRecord::Schema.define(version: 20141126164048) do
 
   create_table "articles", force: true do |t|
     t.integer "user_id",                 null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20141126142350) do
     t.string  "description",             null: false
     t.integer "like",        default: 0
     t.integer "dislikes",    default: 0
+  end
+
+  create_table "promotions", force: true do |t|
+    t.integer "store_id"
+    t.string  "title",                   null: false
+    t.string  "description",             null: false
+    t.integer "price",                   null: false
+    t.string  "photo"
+    t.integer "like",        default: 0
+    t.integer "dislike",     default: 0
   end
 
   create_table "stores", force: true do |t|
