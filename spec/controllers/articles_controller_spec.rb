@@ -35,6 +35,10 @@ describe ArticlesController do
 			expect(assigns(:article)).to be_a_new(Article)
 		end
 
+		it "renders the :new template" do
+			get :new
+			expect(response).to render_template :new
+		end
 	end
 
 
