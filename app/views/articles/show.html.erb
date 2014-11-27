@@ -1,0 +1,11 @@
+<div class="full-article">
+	<div class="author">
+		<span><%= current_user.image %></span>
+		<span><%= @article.created_at %></span>
+	</div>
+
+	<div class="full-news">
+		<h2><%= @article.title %></h2>
+		<div><%= @article.description %></div>
+	</div>
+</div>
