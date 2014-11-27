@@ -1,1 +1,15 @@
-index.html.erb
+<% @articles.each do |article| %>
+	<div class="mini-article">
+		<%= image_tag(article.photo) %>
+
+		<div class="author">
+			<span><%= @article.user.image %></span>
+			<span><%= article.created_at %></span>
+		</div>
+
+		<div class="short-news">
+			<h2><%= article.title %></h2>
+			<p><%= article.description %></p>
+		</div>
+	</div>
+<% end %>

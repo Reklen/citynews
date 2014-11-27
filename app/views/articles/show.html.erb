@@ -1,7 +1,10 @@
 <div class="full-article">
 	<div class="author">
-		<span><%= current_user.image %></span>
-		<span><%= @article.created_at %></span>
+		<span><%= @article.user.image %></span>
+
+		<div>
+			<div><%= @article.user.name %></div>
+			<div>Compartilhada: <%= @article.created_at %></div>
 	</div>
 
 	<div class="full-news">
