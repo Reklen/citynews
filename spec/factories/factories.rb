@@ -8,7 +8,6 @@ FactoryGirl.define do
   	title Faker::Lorem.sentence
   	description Faker::Lorem.paragraph
   	photo Faker::Company.logo
-
   	user
   end
 
@@ -24,5 +23,23 @@ FactoryGirl.define do
 		title Faker::Lorem.sentence
   	description Faker::Lorem.paragraph
   	photo Faker::Company.logo
+  	user
+  end
+
+  factory :store do
+  	name Faker::Company.name
+  	address Faker::Address.street_address
+  	phone "11-5555-5555"
+  	website Faker::Internet.url
+  	picture_path Faker::Company.logo
+  	user
+  end
+
+  factory :promotion do
+		title Faker::Lorem.sentence
+  	description Faker::Lorem.paragraph
+  	photo Faker::Company.logo
+  	price 100
+  	store
   end
 end
