@@ -9,4 +9,11 @@ FactoryGirl.define do
   	description Faker::Lorem.paragraph
   	user
   end
+
+  factory :city_comment do
+  	title Faker::Lorem.sentence
+  	description Faker::Lorem.paragraph
+  	comment_type true
+  	user
+  end
 end
