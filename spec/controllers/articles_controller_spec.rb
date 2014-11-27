@@ -29,6 +29,14 @@ describe ArticlesController do
 		end
 	end
 
+	describe 'GET #new' do
+		it "assigns a new Article to @article" do
+			get :new
+			expect(assigns(:article)).to be_a_new(Article)
+		end
+
+	end
+
 
 
 end
