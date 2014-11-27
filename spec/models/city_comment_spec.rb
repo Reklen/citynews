@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe CityComment do
-	let(:user) { FactoryGirl.create(:user) }
-	before { login_as(user, scope: :user) }
 
 	it "is valid with title comment_type, description" do
 		city_comment = FactoryGirl.create(:city_comment)
