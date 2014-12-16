@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127134330) do
+ActiveRecord::Schema.define(version: 20141216121948) do
 
   create_table "articles", force: true do |t|
-    t.integer  "user_id",                 null: false
-    t.string   "title",                   null: false
-    t.string   "description",             null: false
-    t.integer  "like",        default: 0
-    t.integer  "dislikes",    default: 0
+    t.integer  "user_id",                        null: false
+    t.string   "title",                          null: false
+    t.string   "description",                    null: false
+    t.integer  "like",               default: 0
+    t.integer  "dislikes",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "city_comments", force: true do |t|
