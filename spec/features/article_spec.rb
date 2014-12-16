@@ -14,9 +14,35 @@ feature "Article management" do
 		fill_in 'Título', with: article.title
 		fill_in 'Descrição', with: article.description
 
-		click_button 'Novo Artigo'
+		click_button 'Enviar'
 
 		expect(page).to have_content article.title
+	end
+
+	scenario "update an article" do
+		article = FactoryGirl.create(:article)
+		new_article = FactoryGirl.build(:article)
+
+		visit article_path(article)
+
+		click_link "Editar"
+
+		fill_in 'Título', with: new_article.title
+		fill_in 'Descrição', with: new_article.description
+
+		click_button 'Enviar'
+
+		expect(page).to have_content "Artigo alterado com sucesso"
+	end
+
+	scenario "delete an article" do
+		article = FactoryGirl.create(:article)
+
+		visit article_path(article)
+
+		click_link "Deletar"
+
+		expect(page).to have_content "Artigo deletado"
 	end
 end
 
