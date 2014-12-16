@@ -1,0 +1,10 @@
+<div class="create-article">
+	<%= simple_form_for @article do |f| %>
+		<ul>
+			<li> <%= f.input :title, placeholder: 'Título' %> </li>
+			<li> <%= f.input :description, placeholder: 'Descrição', as: :text %></li>
+			<li> <%= f.input :photo, as: :file %></li>
+			<li> <%= f.button :submit, "Enviar" %></li>
+		</ul>
+	<% end %>
+</div>

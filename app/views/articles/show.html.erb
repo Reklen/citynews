@@ -1,0 +1,17 @@
+<div class="full-article">
+	<div class="full-news">
+		<%= image_tag @article.photo.url(:medium) %>
+
+	<div class="author">
+		<span><%= image_tag @article.user.image %></span>
+		<span><%= @article.user.name %></span>
+		<span>Compartilhada: <%= @article.created_at %></span>
+	</div>
+
+		<h2><%= @article.title %></h2>
+		<div><%= @article.description %></div>
+	</div>
+
+	<%= link_to "Editar", edit_article_path(@article) %>
+	<%= link_to "Deletar", article_path(@article), method: :delete %>
+</div>

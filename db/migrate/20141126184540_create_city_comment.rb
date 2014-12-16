@@ -5,7 +5,7 @@ class CreateCityComment < ActiveRecord::Migration
     	t.string :title, null: false
     	t.boolean :comment_type, null: false
     	t.text :description, null: false
-    	t.timestamp
+    	t.timestamps
     end
   end
 end

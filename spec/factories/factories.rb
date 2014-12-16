@@ -7,8 +7,13 @@ FactoryGirl.define do
   factory :article do
   	title Faker::Lorem.sentence
   	description Faker::Lorem.paragraph
-  	photo Faker::Company.logo
-  	user
+    user
+
+  	#photo do
+     # extend ActionDispatch::TestProcess
+      #fixture_file_upload(Faker::Lorem.word, 'image/png')
+    #end
+
   end
 
   factory :city_comment do

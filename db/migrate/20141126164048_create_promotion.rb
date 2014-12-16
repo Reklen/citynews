@@ -9,7 +9,7 @@ class CreatePromotion < ActiveRecord::Migration
     	t.integer :like, default: 0
     	t.integer :dislike, default: 0
 
-    	t.timestamp
+    	t.timestamps
     end
   end
 end

@@ -11,49 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127134330) do
+ActiveRecord::Schema.define(version: 20141216121948) do
 
   create_table "articles", force: true do |t|
-    t.integer "user_id",                 null: false
-    t.string  "title",                   null: false
-    t.string  "description",             null: false
-    t.integer "like",        default: 0
-    t.integer "dislikes",    default: 0
-    t.string  "photo"
+    t.integer  "user_id",                        null: false
+    t.string   "title",                          null: false
+    t.string   "description",                    null: false
+    t.integer  "like",               default: 0
+    t.integer  "dislikes",           default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "city_comments", force: true do |t|
-    t.integer "user_id",      null: false
-    t.string  "title",        null: false
-    t.boolean "comment_type", null: false
-    t.text    "description",  null: false
+    t.integer  "user_id",      null: false
+    t.string   "title",        null: false
+    t.boolean  "comment_type", null: false
+    t.text     "description",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
-    t.integer "user_id"
-    t.date    "date",        null: false
-    t.string  "title",       null: false
-    t.text    "description", null: false
-    t.string  "photo"
+    t.integer  "user_id"
+    t.date     "date",        null: false
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.string   "photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "promotions", force: true do |t|
-    t.integer "store_id"
-    t.string  "title",                   null: false
-    t.string  "description",             null: false
-    t.integer "price",                   null: false
-    t.string  "photo"
-    t.integer "like",        default: 0
-    t.integer "dislike",     default: 0
+    t.integer  "store_id"
+    t.string   "title",                   null: false
+    t.string   "description",             null: false
+    t.integer  "price",                   null: false
+    t.string   "photo"
+    t.integer  "like",        default: 0
+    t.integer  "dislike",     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stores", force: true do |t|
-    t.integer "user_id",      null: false
-    t.string  "name",         null: false
-    t.string  "address",      null: false
-    t.string  "phone",        null: false
-    t.string  "website"
-    t.string  "picture_path"
+    t.integer  "user_id",      null: false
+    t.string   "name",         null: false
+    t.string   "address",      null: false
+    t.string   "phone",        null: false
+    t.string   "website"
+    t.string   "picture_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
