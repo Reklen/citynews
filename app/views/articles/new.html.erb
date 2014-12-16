@@ -1,21 +1,10 @@
 <div class="mini-article">
-	<% form_for @article do |f| %>
+	<%= simple_form_for @article do |f| %>
 		<ul>
-			<li>
-				<%= f.label :photo %>
-				<%= f.file_field :photo %>
-			</li>
-			<li>
-				<%= f.label :title %>
-				<%= f.text_field :title %>
-			</li>
-			<li>
-				<%= f.label :description %>
-				<%= f.text_area :description %>
-			</li>
-			<li>
-				<%= f.submit %>
-			</li>
+			<li> <%= f.input :title, placeholder: 'Título' %> </li>
+			<li> <%= f.input :description, placeholder: 'Descrição', as: :text %></li>
+			<li> <%= f.input :photo, as: :file %></li>
+			<li> <%= f.button :submit, "Novo Artigo" %></li>
 		</ul>
 	<% end %>
 </div>
