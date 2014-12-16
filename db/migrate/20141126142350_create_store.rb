@@ -8,7 +8,7 @@ class CreateStore < ActiveRecord::Migration
     	t.string :website
     	t.string :picture_path
 
-    	t.timestamp
+    	t.timestamps
     end
   end
 end

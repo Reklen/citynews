@@ -6,7 +6,7 @@ class CreateNews < ActiveRecord::Migration
     	t.string :description, null: false
     	t.integer :like, default: 0
     	t.integer :dislikes, default: 0
-    	t.timestamp
+    	t.timestamps
     end
   end
 end
