@@ -39,11 +39,14 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-
 gem 'omniauth-facebook'
+
+gem 'simple_form'
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
+  gem 'capybara'
 end
