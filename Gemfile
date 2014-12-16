@@ -42,6 +42,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'simple_form'
+gem "paperclip", "~> 4.2"
 
 
 group :development, :test do
