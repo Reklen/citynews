@@ -17,3 +17,5 @@
 
 # Ignore devise.rb to avoid problems with Facebook
 /config/initializers/devise.rb
+
+/public/system
