@@ -20,6 +20,7 @@ header {
 			display: inline-block;
 			margin: 0;
 			vertical-align: middle;
+			text-align: center;
 		}
 		.logo {
 			width: 60%;
@@ -33,7 +34,9 @@ header {
 			}
 			.sub-logo {
 				padding-top: 0;
-				margin-top: 0;
+				margin: 0;
+				position: relative;
+				top: -10px;
 			}
 		}
 		.nav-user {
@@ -44,7 +47,7 @@ header {
 			ul {
 				li {
 					display: inline-block;
-					margin-right: 10px;
+					padding: 10px;
 					img {
 						vertical-align: middle;
 					}
@@ -61,7 +64,6 @@ header {
 		width: 100%;
 		background-color: #E0E0E0;
 		margin: 0;
-		margin-bottom: 15px;
 		nav {
 			text-align: center;
 
