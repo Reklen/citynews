@@ -1,7 +1,10 @@
 <header>
 
   <div class="main-header">
-    <div class="weather">18</div>
+    <div class="weather">
+      <span><%= wi_icon(@weather.condition.text.downcase) %></span>
+      <span><%= @weather.condition.temp %>&deg;</span>
+    </div>
 
     <div class="logo">
       <h1 class="main-logo"><%= link_to 'CAPITÓLIO', root_path %></h1>
