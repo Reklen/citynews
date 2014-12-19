@@ -8,14 +8,22 @@
 <article class="main-news">
 	<div class="card">
 		<h3>Últimas Notícias</h3>
+
 		<% @articles.each do |article| %>
+
 			<div class="short-new">
-				<%= image_tag(article.photo.url(:medium), class: "img-article") %>
+
+				<div class="img-wrapper">
+					<%= image_tag(article.photo.url(:medium), class: "img-article") %>
+				</div>
+
 				<%= render partial: 'layouts/author', locals: { article: article } %>
+
 				<div class="mini-news">
 					<h4><%= article.title %></h4>
 					<p><%= article.description %></p>
 				</div>
+
 			</div>
 		<% end %>
 	</div>
@@ -23,8 +31,9 @@
 	<div class="card">
 		<h3>Eventos</h3>
 		<div class="event">
-			<%= image_tag("anonovo.jpg", class: "img-article") %>
-
+			<div class="img-wrapper">
+				<%= image_tag("anonovo.jpg", class: "img-article") %>
+			</div>
 			<div class="mini-news">
 				<h4>Ano novo da alegria!</h4>
 				<p><%= Faker::Lorem.paragraph(3) %></p>
@@ -32,8 +41,9 @@
 		</div>
 
 		<div class="event">
-			<%= image_tag("carnaval.jpg", class: "img-article") %>
-
+			<div class="img-wrapper">
+				<%= image_tag("carnaval.jpg", class: "img-article") %>
+			</div>
 			<div class="mini-news">
 				<h4>O melhor carnaval da Região</h4>
 				<p><%= Faker::Lorem.paragraph(3) %></p>
