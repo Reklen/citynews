@@ -1,0 +1,51 @@
+.headline {
+	display: block;
+	width: 100%;
+	margin-top: 2px;
+	img {
+		width: 100%;
+	}
+	h2 {
+		margin: 0;
+	}
+}
+
+.main-news {
+	display: block;
+	width: 100%;
+
+	.card {
+		width: 48%;
+		float: left;
+		margin: 1%;
+
+		.img-wrapper {
+			width: 100%;
+			height: 200px;
+			display: block;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		.author {
+			position: relative;
+			top: -20px;
+			font-size: 0.6em;
+		}
+		.mini-news {
+
+
+			h4 {
+				margin: 0;
+			}
+
+			p {
+				margin-top: 0;
+			}
+		}
+	}
+}

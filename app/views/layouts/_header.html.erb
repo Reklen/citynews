@@ -1,16 +1,21 @@
 <header>
-  <div class="logo"><%= link_to 'Capitolio NEWS', root_path %></div>
-  <nav>
-    <ul>
-      <% if current_user %>
-        <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
-        <li><%= image_tag current_user.image %></li>
-        <li><%= link_to("Novo", new_article_path) %></li>
-      <% else %>
-        <li>
-          <%= link_to "logar com Facebook", user_omniauth_authorize_path(:facebook) %>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
+
+  <div class="main-header">
+    <div class="weather">
+      <span><%= wi_icon(@weather.condition.text.downcase) %></span>
+      <span><%= @weather.condition.temp %>&deg;</span>
+    </div>
+
+    <div class="logo">
+      <h1 class="main-logo"><%= link_to 'CAPITÓLIO', root_path %></h1>
+      <h4 class="sub-logo">NEWS</h4>
+    </div>
+
+    <%= render 'layouts/nav_user' %>
+  </div>
+
+  <div class="sub-header">
+    <%= render 'layouts/nav_main' %>
+  </div>
+
 </header>

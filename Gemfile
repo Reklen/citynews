@@ -51,3 +51,7 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
 end
+
+gem 'weather-icons-rails'
+gem 'weather-api'
+
