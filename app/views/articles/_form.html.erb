@@ -1,9 +1,9 @@
 <div class="create-article">
 	<%= simple_form_for @article do |f| %>
 		<ul>
-			<li> <%= f.input :title, placeholder: 'Título' %> </li>
-			<li> <%= f.input :description, placeholder: 'Descrição', as: :text %></li>
-			<li> <%= f.input :photo, as: :file %></li>
+			<li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
+			<li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
+			<li> <%= f.input :photo, as: :file, label: false %></li>
 			<li> <%= f.button :submit, "Enviar" %></li>
 		</ul>
 	<% end %>
