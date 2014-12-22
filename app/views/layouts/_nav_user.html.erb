@@ -2,6 +2,7 @@
   <ul>
     <% if current_user %>
       <li>
+
         <%= image_tag("plus-btn-2.png") %>
         <ul class="drop-down">
           <li><%= link_to "Noticias", new_article_path %></li>
@@ -11,8 +12,8 @@
           <li><%= link_to "Empregos", new_article_path %></li>
           <li><%= link_to "Enquetes", new_article_path %></li>
           <li><%= link_to "Prefeitura", new_article_path %></li>
-
         </ul>
+
       </li>
       <li>
         <%= image_tag current_user.image, class: "user-logo" %>

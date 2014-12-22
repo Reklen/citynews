@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 
   def index
-  	@articles = Article.last(2)
+  	@articles = Article.last(2).reverse
   end
 
   def weather
