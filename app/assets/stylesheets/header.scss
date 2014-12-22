@@ -89,6 +89,7 @@ header {
     position:absolute;
     display: none;
     left: -90px;
+    z-index: 1000;
 
 		li {
 			clear: both;
