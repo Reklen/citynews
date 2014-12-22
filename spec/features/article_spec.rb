@@ -9,26 +9,27 @@ feature "Article management" do
 
 		visit root_path
 
-		click_link 'Novo'
+		click_link('novo')
 
-		fill_in 'Título', with: article.title
-		fill_in 'Descrição', with: article.description
+		fill_in 'article_title', with: article.title
+		fill_in 'article_description', with: article.description
 
 		click_button 'Enviar'
 
 		expect(page).to have_content article.title
+
 	end
 
 	scenario "update an article" do
-		article = FactoryGirl.create(:article)
+		article = user.articles.create(title: "title", description: "description")
 		new_article = FactoryGirl.build(:article)
 
 		visit article_path(article)
 
 		click_link "Editar"
 
-		fill_in 'Título', with: new_article.title
-		fill_in 'Descrição', with: new_article.description
+		fill_in 'article_title', with: new_article.title
+		fill_in 'article_description', with: new_article.description
 
 		click_button 'Enviar'
 
@@ -36,13 +37,21 @@ feature "Article management" do
 	end
 
 	scenario "delete an article" do
-		article = FactoryGirl.create(:article)
+		article = user.articles.create(title: "title", description: "description")
 
 		visit article_path(article)
 
 		click_link "Deletar"
 
 		expect(page).to have_content "Artigo deletado"
+	end
+
+	scenario "Show all articles" do
+		visit root_path
+
+		click_link 'Notícias'
+
+		expect(page).to have_content "Notícias"
 	end
 end
 

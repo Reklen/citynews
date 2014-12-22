@@ -1,17 +1,20 @@
-<div class="full-article">
-	<div class="full-news">
-		<%= image_tag @article.photo.url(:medium) %>
+<div class="card full">
+	<div class="short-new">
 
-	<div class="author">
-		<span><%= image_tag @article.user.image %></span>
-		<span><%= @article.user.name %></span>
-		<span>Compartilhada: <%= @article.created_at %></span>
+		<div class="img-wrapper">
+			<%= image_tag(@article.photo.url(:medium), class: "img-article") %>
+			<%= render partial: 'layouts/author', locals: { article: @article } %>
+		</div>
+
+		<div class="">
+			<h4><%= @article.title %></h4>
+			<p><%= @article.description %></p>
+		</div>
+
 	</div>
 
-		<h2><%= @article.title %></h2>
-		<div><%= @article.description %></div>
-	</div>
-
-	<%= link_to "Editar", edit_article_path(@article) %>
-	<%= link_to "Deletar", article_path(@article), method: :delete %>
+	<% if current_user == @article.user %>
+		<%= link_to "Editar", edit_article_path(@article), class: "left"; %>
+		<%= link_to "Deletar", article_path(@article), method: :delete, class: "right" %>
+	<% end %>
 </div>
