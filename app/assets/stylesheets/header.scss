@@ -48,11 +48,19 @@ header {
 				li {
 					display: inline-block;
 					padding: 10px;
+					position: relative;
+
 					img {
 						vertical-align: middle;
 					}
 				}
+				li:hover{
+					.drop-down {
+						display: inline;
+					}
+				}
 			}
+
 
 
 		}
@@ -77,5 +85,25 @@ header {
 			}
 		}
 	}
+	.drop-down {
+    position:absolute;
+    display: none;
+    left: -90px;
 
+		li {
+			clear: both;
+	    background: #353535;
+			float:none;
+			text-align: center;
+			margin-bottom: 1px;
+			a {
+				display: block;
+				width: 150px;
+				color: #E0E0E0;
+			}
+		}
+		li:hover {
+			background: #555;
+		}
+	}
 }
