@@ -1,0 +1,21 @@
+<div class="card full">
+	<div class="short-new">
+
+		<div class="img-wrapper">
+			<%= image_tag(@event.photo.url(:medium), class: "img-article") %>
+			<%= render partial: 'layouts/author', locals: { article: @event } %>
+		</div>
+
+		<div class="">
+			<span>Quando: <%= @event.date.day %>/<%= @event.date.month %>/<%= @event.date.year %></span>
+			<h4><%= @event.title %></h4>
+			<p><%= @event.description %></p>
+		</div>
+
+	</div>
+
+	<% if current_user == @event.user %>
+		<%= link_to "Editar", edit_event_path(@event), class: "left"; %>
+		<%= link_to "Deletar", event_path(@event), method: :delete, class: "right" %>
+	<% end %>
+</div>
