@@ -1,0 +1,23 @@
+<h2>Eventos</h2>
+<% @events.each do |event| %>
+		<div class="card">
+			<a href="<%= event_path(event) %>">
+
+				<div class="img-wrapper">
+					<%= image_tag(event.photo.url(:medium), class: "img-article") %>
+				</div>
+
+				<%= render partial: 'layouts/author', locals: { article: event } %>
+
+				<div class="mini-news">
+
+					<h4><%= event.title %></h4>
+					<p><%= event.description %></p>
+					<span>Quando: <%= event.date.day %>/<%= event.date.month %>/<%= event.date.year %></span>
+				</div>
+
+			</a>
+		</div>
+
+<% end %>
+
