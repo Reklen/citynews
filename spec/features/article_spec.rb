@@ -9,7 +9,7 @@ feature "Article management" do
 
 		visit root_path
 
-		click_link('novo')
+		first(".nav-user").click_link('Notícias')
 
 		fill_in 'article_title', with: article.title
 		fill_in 'article_description', with: article.description
@@ -49,7 +49,7 @@ feature "Article management" do
 	scenario "Show all articles" do
 		visit root_path
 
-		click_link 'Notícias'
+		first(".nav-main").click_link('Notícias')
 
 		expect(page).to have_content "Notícias"
 	end
