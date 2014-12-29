@@ -4,7 +4,7 @@ feature "Events management" do
 	let(:user) { FactoryGirl.create(:user) }
 	before { login_as(user, scope: :user) }
 
-	scenario "It visits the event create page" do
+	scenario "visits the event create page" do
 		visit root_path
 
 		first(".nav-user").click_link("Eventos")
@@ -12,7 +12,7 @@ feature "Events management" do
 		expect(page).to have_content("Compartilhe um evento")
 	end
 
-	scenario "It creates a new event" do
+	scenario "creates a new event" do
 		event = FactoryGirl.create(:event)
 
 		visit new_event_path
@@ -25,6 +25,37 @@ feature "Events management" do
 		click_button "Enviar"
 
 		expect(page).to have_content event.title
+	end
+
+	scenario "displays all current events" do
+		visit root_path
+		first(".nav-main").click_link("Eventos")
+
+		expect(page).to have_content("Eventos")
+	end
+
+	scenario "updates an event" do
+		event = user.events.create(title: "test", description: "test", date: Time.now)
+		visit event_path(event)
+
+		click_link "Editar"
+
+		fill_in "event_title", with: "New title"
+
+		click_button "Enviar"
+
+		expect(page).to have_content("Evento alterado")
+
+	end
+
+	scenario "delete an event" do
+		event = user.events.create(title: "test", description: "test", date: Time.now)
+		visit event_path(event)
+
+		click_link "Deletar"
+
+		expect(page).to have_content("Evento deletado")
+
 	end
 
 end
