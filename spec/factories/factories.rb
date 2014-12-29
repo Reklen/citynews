@@ -27,7 +27,7 @@ FactoryGirl.define do
 		date DateTime.now.to_date
 		title Faker::Lorem.sentence
   	description Faker::Lorem.paragraph
-  	photo Faker::Company.logo
+  	# photo Faker::Company.logo
   	user
   end
 
