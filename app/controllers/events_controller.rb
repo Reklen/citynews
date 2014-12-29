@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
 
+	def index
+		@events = Event.all
+	end
+
 	def show
 		@event = Event.find(params[:id])
 	end
@@ -16,6 +20,29 @@ class EventsController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def edit
+		@event = Event.find(params[:id])
+	end
+
+	def update
+		@event = Event.find(params[:id])
+
+		if @event.update(event_params)
+			flash[:notice] = "Evento alterado"
+			redirect_to @event
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@event = Event.find(params[:id])
+
+		@event.delete
+		flash[:notice] = "Evento deletado"
+		redirect_to events_path
 	end
 
 	private
