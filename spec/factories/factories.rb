@@ -43,7 +43,7 @@ FactoryGirl.define do
   factory :promotion do
 		title Faker::Lorem.sentence
   	description Faker::Lorem.paragraph
-  	photo Faker::Company.logo
+  	# photo Faker::Company.logo
   	price 100
   	store
   end
