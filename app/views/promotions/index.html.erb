@@ -1,0 +1,23 @@
+<h2>Promoções da Semana</h2>
+<% @promotions.each do |promotion| %>
+		<div class="card">
+			<a href="<%= promotion_path(promotion) %>">
+
+				<div class="img-wrapper">
+					<%= image_tag(promotion.photo.url(:medium), class: "img-article") %>
+				</div>
+
+				<%= render partial: 'layouts/author', locals: { article: promotion } %>
+
+				<div class="mini-news">
+
+					<h4><%= promotion.title %></h4>
+					<p><%= promotion.description %></p>
+					<span>R$<%= promotion.price %></span>
+				</div>
+
+			</a>
+		</div>
+
+<% end %>
+
