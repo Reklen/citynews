@@ -50,17 +50,17 @@ ActiveRecord::Schema.define(version: 20150104151815) do
   end
 
   create_table "promotions", force: true do |t|
-    t.string   "title",                              null: false
-    t.string   "description",                        null: false
-    t.integer  "price",                              null: false
-    t.integer  "like",                   default: 0
-    t.integer  "dislike",                default: 0
+    t.string   "title",                          null: false
+    t.string   "description",                    null: false
+    t.integer  "price",                          null: false
+    t.integer  "like",               default: 0
+    t.integer  "dislike",            default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photorake_file_name"
-    t.string   "photorake_content_type"
-    t.integer  "photorake_file_size"
-    t.datetime "photorake_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.integer  "user_id"
   end
 
