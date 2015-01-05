@@ -1,0 +1,18 @@
+<%= simple_form_for @promotion do |f| %>
+	<ul>
+		<li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
+		<li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
+		<li> <%= f.input :price, placeholder: "10", label: "Preço: " %> </li>
+
+		<li>Anexar:</li>
+		<li	class="file-upload">
+
+				<%= image_tag "icon-camera.png" %>
+				<%= f.input :photo, as: :file, label: false %>
+		</li>
+	</ul>
+
+	<div class="submit-area">
+		<%= f.button :submit, "Enviar"%>
+	</div>
+<% end %>

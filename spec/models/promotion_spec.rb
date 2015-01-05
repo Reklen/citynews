@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Promotion do
+	let(:user) { FactoryGirl.create(:user) }
+	before { login_as(user, scope: :user) }
 
 	it 'is valid with title, description, price' do
 		promo = FactoryGirl.create(:promotion)
