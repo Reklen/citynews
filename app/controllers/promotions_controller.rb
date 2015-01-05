@@ -37,6 +37,15 @@ class PromotionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		promotion = Promotion.find(params[:id])
+
+		promotion.delete
+		flash[:notice] = "Promoção Apagada"
+
+		redirect_to root_path
+	end
+
 	private
 	def promo_params
 		params.require(:promotion).permit(:title, :description, :photo, :price)

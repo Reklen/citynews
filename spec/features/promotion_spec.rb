@@ -44,4 +44,14 @@ feature 'Promotion Manager' do
 
     expect(page).to have_content "test"
   end
+
+  scenario "deletes one promotion" do
+    promotion = user.promotions.create(title: "test", description: "test", price: 10)
+
+    visit promotion_path(promotion)
+
+    click_link "Deletar"
+
+    expect(page).to have_content "Promoção Apagada"
+  end
 end
