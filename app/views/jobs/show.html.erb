@@ -1,0 +1,16 @@
+<div class="card full">
+	<div class="short-new">
+
+		<div class="">
+			<h4><%= @job.title %></h4>
+			<p><%= @job.description %></p>
+			<p>Salário: <%= @job.salary %></p>
+		</div>
+
+	</div>
+
+	<% if current_user == @job.user %>
+		<%= link_to "Editar", edit_job_path(@job), class: "left"; %>
+		<%= link_to "Deletar", job_path(@job), method: :delete, class: "right" %>
+	<% end %>
+</div>
