@@ -29,4 +29,25 @@ feature "Job management" do
 
 		expect(page).to have_content job.title
 	end
+
+	scenario 'update a job' do
+		job = user.jobs.create(title: "test", description: "description", salary: 1000)
+
+		visit job_path(job)
+		click_link "Editar"
+		fill_in "job_title", with: "test"
+
+		click_button "Enviar"
+
+		expect(page).to have_content "test"
+	end
+
+	scenario 'delete a job' do
+		job = user.jobs.create(title: "test", description: "des", salary: 10000)
+
+		visit job_path(job)
+		click_link "Deletar"
+
+		expect(page).to have_content "Emprego apagado com sucesso"
+	end
 end
