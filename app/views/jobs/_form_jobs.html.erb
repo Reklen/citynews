@@ -1,0 +1,13 @@
+<%= simple_form_for @job do |f| %>
+	<ul>
+		<li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
+		<li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
+		<li>
+			<%= f.input :salary %>
+		</li>
+	</ul>
+
+	<div class="submit-area">
+		<%= f.button :submit, "Enviar"%>
+	</div>
+<% end %>

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	has_many :promotions
 	has_many :events
 	has_many :city_comments
+	has_many :jobs
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

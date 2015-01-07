@@ -30,4 +30,11 @@ FactoryGirl.define do
   	price 100
   	user
   end
+
+  factory :job do
+    title Faker::Lorem.sentence
+    description Faker::Lorem.paragraph
+    salary 1000
+    user
+  end
 end
