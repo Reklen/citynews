@@ -11,18 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121181016) do
+ActiveRecord::Schema.define(version: 20150121190007) do
 
   create_table "articles", force: true do |t|
-    t.integer  "user_id",            null: false
-    t.string   "title",              null: false
-    t.string   "description",        null: false
+    t.integer  "user_id",     null: false
+    t.string   "title",       null: false
+    t.string   "description", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "city_comments", force: true do |t|
@@ -36,15 +32,11 @@ ActiveRecord::Schema.define(version: 20150121181016) do
 
   create_table "events", force: true do |t|
     t.integer  "user_id"
-    t.date     "date",               null: false
-    t.string   "title",              null: false
-    t.text     "description",        null: false
+    t.date     "date",        null: false
+    t.string   "title",       null: false
+    t.text     "description", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "jobs", force: true do |t|
@@ -56,16 +48,25 @@ ActiveRecord::Schema.define(version: 20150121181016) do
     t.datetime "updated_at"
   end
 
-  create_table "promotions", force: true do |t|
-    t.string   "title",              null: false
-    t.string   "description",        null: false
-    t.integer  "price",              null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "pictures", force: true do |t|
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  add_index "pictures", ["imageable_id", "imageable_type"], name: "index_pictures_on_imageable_id_and_imageable_type"
+
+  create_table "promotions", force: true do |t|
+    t.string   "title",       null: false
+    t.string   "description", null: false
+    t.integer  "price",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
   end
 
