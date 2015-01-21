@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105231816) do
+ActiveRecord::Schema.define(version: 20150121181016) do
 
   create_table "articles", force: true do |t|
-    t.integer  "user_id",                        null: false
-    t.string   "title",                          null: false
-    t.string   "description",                    null: false
-    t.integer  "like",               default: 0
-    t.integer  "dislikes",           default: 0
+    t.integer  "user_id",            null: false
+    t.string   "title",              null: false
+    t.string   "description",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -59,11 +57,9 @@ ActiveRecord::Schema.define(version: 20150105231816) do
   end
 
   create_table "promotions", force: true do |t|
-    t.string   "title",                          null: false
-    t.string   "description",                    null: false
-    t.integer  "price",                          null: false
-    t.integer  "like",               default: 0
-    t.integer  "dislike",            default: 0
+    t.string   "title",              null: false
+    t.string   "description",        null: false
+    t.integer  "price",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
