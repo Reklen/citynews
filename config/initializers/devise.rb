@@ -96,7 +96,7 @@ Devise.setup do |config|
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 10
 
-  config.facebook.token = ENV['facebook_token'] || 'test-token'
+  config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"]
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = '5dcbe7c337f6a0f24dcfb2ad629844d3b7a165784ca83fc3185945fd99d3c9d87d733b4b8a9296b5d32064096f2905d77923d1f2cd1fe2ee8ed0b38a2578efcd'
