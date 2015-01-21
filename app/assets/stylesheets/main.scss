@@ -2,10 +2,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
-a {
-	text-decoration: none;
-	color: #777;
-}
+
 .container{
 	display: block;
 	width: 1000px;
@@ -23,4 +20,10 @@ a {
 }
 .right {
 	float: right;
+}
+
+*{
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;
 }

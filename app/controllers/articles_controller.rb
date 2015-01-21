@@ -1,18 +1,19 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, execpt: [:index, :show]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+
   def index
   	@articles = Article.all.reverse
   end
 
   def show
-  	@article = Article.find(params[:id])
   end
 
   def new
-  	@article = Article.new
+  	@article = current_user.articles.new
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
@@ -26,8 +27,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
       flash["notice"] = "Artigo alterado com sucesso"
       redirect_to @article
@@ -37,8 +36,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
-
     @article.delete
     flash["notice"] = "Artigo deletado"
     redirect_to root_path
@@ -48,4 +45,8 @@ class ArticlesController < ApplicationController
   	def article_params
   		params.require(:article).permit(:title, :description, :photo, :user_id)
   	end
+
+    def set_article
+      @article = Article.find(params[:id])
+    end
 end

@@ -10,24 +10,26 @@
 			# main links
 
 */
+@mixin header-user-block($width) {
+	width: $width;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0;
+}
 
 header {
 	display: block;
 	height: auto;
+	li {
+		display: inline-block;
+	}
 	.main-header {
 		.weather {
-			width: 19%;
-			display: inline-block;
-			margin: 0;
-			vertical-align: middle;
-			text-align: center;
+			@include header-user-block(19%);
 		}
 		.logo {
-			width: 60%;
-			margin: 0;
-			display: inline-block;
-			text-align: center;
-			vertical-align: middle;
+			@include header-user-block(60%);
 			.main-logo {
 				margin-bottom: 0;
 				padding-bottom: 0;
@@ -40,13 +42,10 @@ header {
 			}
 		}
 		.nav-user {
-			width: 20%;
-			display: inline-block;
-			vertical-align: middle;
+			@include header-user-block(20%);
 
 			ul {
 				li {
-					display: inline-block;
 					padding: 10px;
 					position: relative;
 
@@ -60,9 +59,6 @@ header {
 					}
 				}
 			}
-
-
-
 		}
 	}
 	.sub-header {
@@ -72,14 +68,9 @@ header {
 		margin: 0;
 		nav {
 			text-align: center;
-
-			li {
-				display: inline-block;
-
-				a{
-					padding: 15px 20px;
-				}
-				a:hover{
+			a{
+				padding: 15px 20px;
+				&:hover{
 					background-color: #FFF;
 				}
 			}
@@ -94,17 +85,17 @@ header {
 		li {
 			clear: both;
 	    background: #353535;
-			float:none;
+			float: none;
 			text-align: center;
 			margin-bottom: 1px;
+			&:hover {
+				background: #555;
+			}
 			a {
 				display: block;
 				width: 150px;
 				color: #E0E0E0;
 			}
-		}
-		li:hover {
-			background: #555;
 		}
 	}
 }
