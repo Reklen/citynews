@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-  	@article = Article.new
+  	@article = current_user.articles.new
   end
 
   def edit
