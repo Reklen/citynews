@@ -1,18 +1,19 @@
 class PromotionsController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show]
+	before_action :set_promotion, only: [:show, :create, :update, :destroy]
+
 	def index
 		@promotions = Promotion.all
 	end
 
 	def show
-		@promotion = Promotion.find(params[:id])
 	end
 
 	def new
-		@promotion = Promotion.new
+		@promotion = current_user.promotions.new
 	end
 
 	def create
-		@promotion = current_user.promotions.new(promo_params)
 		if @promotion.save
 			flash[:notice] = "Promoção criada com sucesso"
 			redirect_to @promotion
@@ -23,12 +24,9 @@ class PromotionsController < ApplicationController
 	end
 
 	def edit
-		@promotion = Promotion.find(params[:id])
 	end
 
 	def update
-		@promotion = Promotion.find(params[:id])
-
 		if @promotion.update(promo_params)
 			redirect_to @promotion
 		else
@@ -38,8 +36,6 @@ class PromotionsController < ApplicationController
 	end
 
 	def destroy
-		promotion = Promotion.find(params[:id])
-
 		promotion.delete
 		flash[:notice] = "Promoção Apagada"
 
@@ -49,6 +45,10 @@ class PromotionsController < ApplicationController
 	private
 	def promo_params
 		params.require(:promotion).permit(:title, :description, :photo, :price)
+	end
+
+	def set_promotion
+		@promotion = current_user.promotion.find(params[:id])
 	end
 
 end
