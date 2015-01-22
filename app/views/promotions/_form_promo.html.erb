@@ -6,9 +6,10 @@
 
 		<li>Anexar:</li>
 		<li	class="file-upload">
-
 				<%= image_tag "icon-camera.png" %>
-				<%= f.input :photo, as: :file, label: false %>
+				<%= f.fields_for :picture_attributes do |picture_fields| %>
+					<%= picture_fields.file_field :photo %> 
+				<% end %>
 		</li>
 	</ul>
 
