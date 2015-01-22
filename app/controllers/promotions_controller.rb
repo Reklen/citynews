@@ -1,12 +1,13 @@
 class PromotionsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :set_promotion, only: [:show, :create, :update, :destroy]
+	before_action :set_promotion, only: [:edit, :update, :destroy]
 
 	def index
 		@promotions = Promotion.all
 	end
 
 	def show
+    @promotion = Promotion.find(params[:id])
 	end
 
 	def new
@@ -14,13 +15,13 @@ class PromotionsController < ApplicationController
 	end
 
 	def create
+		@promotion = current_user.promotions.new(promo_params)
 		if @promotion.save
 			flash[:notice] = "Promoção criada com sucesso"
 			redirect_to @promotion
 		else
 			render 'new'
 		end
-
 	end
 
 	def edit
@@ -44,11 +45,11 @@ class PromotionsController < ApplicationController
 
 	private
 	def promo_params
-		params.require(:promotion).permit(:title, :description, :photo, :price)
+		params.require(:promotion).permit(:title, :description, :price, picture_attributes: [:photo])
 	end
 
 	def set_promotion
-		@promotion = current_user.promotion.find(params[:id])
+		@promotion = current_user.promotions.find(params[:id])
 	end
 
 end
