@@ -2,7 +2,7 @@
 	<div class="short-new">
 
 		<div class="img-wrapper">
-			<%= image_tag(@event.photo.url(:medium), class: "img-article") %>
+			<%= image_tag(@event.picture.photo.url(:medium), class: "img-article") %>
 			<%= render partial: 'layouts/author', locals: { article: @event } %>
 		</div>
 
