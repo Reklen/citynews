@@ -22,13 +22,14 @@ class ArticlesController < ApplicationController
   	if @article.save
   		redirect_to @article
   	else
+      flash[:notice] = "A notícia não pode ser salva"
   		render 'new'
   	end
   end
 
   def update
     if @article.update(article_params)
-      flash["notice"] = "Artigo alterado com sucesso"
+      flash["notice"] = "Notícia alterada com sucesso"
       redirect_to @article
     else
       render 'edit'
@@ -37,13 +38,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.delete
-    flash["notice"] = "Artigo deletado"
+    flash["notice"] = "Notícia apagada"
     redirect_to root_path
   end
 
   private
   	def article_params
-  		params.require(:article).permit(:title, :description, :photo, :user_id)
+      params.require(:article).permit(:title, :description, :user_id, picture_attributes: [:photo])
   	end
 
     def set_article
