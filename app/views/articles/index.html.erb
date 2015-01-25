@@ -4,7 +4,9 @@
 			<a href="<%= article_path(article) %>">
 
 				<div class="img-wrapper">
-					<%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
+					<% if article.picture %>
+						<%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
+					<% end %>
 				</div>
 
 				<%= render partial: 'layouts/author', locals: { article: article } %>

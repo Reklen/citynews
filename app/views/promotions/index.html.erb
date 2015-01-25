@@ -4,7 +4,9 @@
 			<a href="<%= promotion_path(promotion) %>">
 
 				<div class="img-wrapper">
-					<%= image_tag(promotion.picture.photo.url(:medium), class: "img-article") %>
+					<% if promotion.picture %>
+						<%= image_tag(promotion.picture.photo.url(:medium), class: "img-article") %>
+					<% end %>
 				</div>
 
 				<%= render partial: 'layouts/author', locals: { article: promotion } %>
