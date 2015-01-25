@@ -1,0 +1,21 @@
+<h2>Fale com a prefeitura</h2>
+<% @city_comments.each do |cc| %>
+		<div class="card">
+			<a href="<%= article_path(article) %>">
+
+				<div class="img-wrapper">
+					<% if cc.picture %>
+						<%= image_tag(cc.picture.photo.url(:medium), class: "img-article") %>
+					<% end %>
+				</div>
+
+				<%= render partial: 'layouts/author', locals: { article: cc } %>
+
+				<div class="mini-news">
+					<h4><%= cc.title %></h4>
+					<p><%= cc.description %></p>
+				</div>
+
+			</a>
+		</div>
+<% end %>
