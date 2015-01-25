@@ -1,0 +1,24 @@
+<div class="card full">
+	<div class="short-new">
+
+		<div class="img-wrapper">
+			<% if @city_comment.picture %>
+				<%= image_tag(@city_comment.picture.photo.url(:medium), class: "img-article") %>
+			<% end %>
+			<%= render partial: 'layouts/author', locals: { article: @city_comment } %>
+		</div>
+
+		<div class="">
+			<h4><%= @city_comment.title %></h4>
+			<p><%= @city_comment.description %></p>
+			<p>Comentário positivo: <%=
+			@city_comment.comment_type %></p>
+		</div>
+
+	</div>
+
+	<% if current_user == @city_comment.user %>
+		<%= link_to "Editar", edit_city_comment_path(@city_comment), class: "left"; %>
+		<%= link_to "Deletar", city_comment_path(@city_comment), method: :delete, class: "right" %>
+	<% end %>
+</div>

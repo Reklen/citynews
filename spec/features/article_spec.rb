@@ -33,7 +33,7 @@ feature "Article management" do
 
 		click_button 'Enviar'
 
-		expect(page).to have_content "Artigo alterado com sucesso"
+		expect(page).to have_content "Notícia alterada com sucesso"
 	end
 
 	scenario "delete an article" do
@@ -43,7 +43,7 @@ feature "Article management" do
 
 		click_link "Deletar"
 
-		expect(page).to have_content "Artigo deletado"
+		expect(page).to have_content "Notícia apagada"
 	end
 
 	scenario "Show all articles" do

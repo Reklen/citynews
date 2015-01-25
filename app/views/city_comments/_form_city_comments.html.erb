@@ -1,0 +1,22 @@
+<%= simple_form_for @city_comment do |f| %>
+	<ul>
+		<li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
+		<li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
+		<li>
+			Comentário positivo?:
+			<%= f.input :comment_type, as: :boolean, checked_value: true, unchecked_value: false %>
+		</li>
+
+		<li>Anexar:</li>
+		<li	class="file-upload">
+				<%= image_tag "icon-camera.png" %>
+				<%= f.fields_for :picture_attributes do |picture_fields| %>
+					<%= picture_fields.file_field :photo %>
+				<% end %>
+		</li>
+	</ul>
+
+	<div class="submit-area">
+		<%= f.button :submit, "Enviar"%>
+	</div>
+<% end %>

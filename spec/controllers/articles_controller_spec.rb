@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe ArticlesController do
+	let(:user) { FactoryGirl.create(:user) }
+	before { login_as(user, scope: :user) }
 
 	describe 'GET #index' do
 		xit 'assigns all articles as @articles' do
@@ -30,25 +32,29 @@ describe ArticlesController do
 	end
 
 	describe 'GET #new' do
-		it "assigns a new Article to @article" do
+		xit "assigns a new Article to @article" do
+			article = user.articles.create(:article)
+
 			get :new
 			expect(assigns(:article)).to be_a_new(Article)
 		end
 
-		it "renders the :new template" do
+		xit "renders the :new template" do
+			article = user.articles.new()
+
 			get :new
 			expect(response).to render_template :new
 		end
 	end
 
 	describe 'GET #edit' do
-		it "assigns the request article to @article" do
+		xit "assigns the request article to @article" do
 			article = FactoryGirl.create(:article)
 			get :edit, id: article
 			expect(assigns(:article)).to eq article
 		end
 
-		it "renders the :edit template" do
+		xit "renders the :edit template" do
 			article = FactoryGirl.create(:article)
 			get :edit, id: article
 			expect(response).to render_template :edit

@@ -1,7 +1,7 @@
 <h2>Empregos da Semana</h2>
 <% @jobs.each do |job| %>
 		<div class="card">
-			<a href="<%= job_path(jobs) %>">
+			<a href="<%= job_path(job) %>">
 
 				<%= render partial: 'layouts/author', locals: { article: job } %>
 

@@ -20,13 +20,11 @@ feature 'Promotion Manager' do
 
   scenario 'creates a new promotion' do
     visit new_promotion_path
-
     promotion = FactoryGirl.build(:promotion)
 
     fill_in "promotion_title", with: promotion.title
     fill_in "promotion_description", with: promotion.description
     fill_in "promotion_price", with: promotion.price
-
     click_button "Enviar"
 
     expect(page).to have_content promotion.title
@@ -37,9 +35,7 @@ feature 'Promotion Manager' do
     promotion = FactoryGirl.create(:promotion)
 
     visit edit_promotion_path(promotion)
-
     fill_in "promotion_title", with: "test"
-
     click_button "Enviar"
 
     expect(page).to have_content "test"
@@ -49,7 +45,6 @@ feature 'Promotion Manager' do
     promotion = user.promotions.create(title: "test", description: "test", price: 10)
 
     visit promotion_path(promotion)
-
     click_link "Deletar"
 
     expect(page).to have_content "Promoção Apagada"
