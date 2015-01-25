@@ -3,7 +3,7 @@
 
 		<div class="img-wrapper">
 			<% if @event.picture %>
-			<%= image_tag(@event.picture.photo.url(:medium), class: "img-article") %>
+				<%= image_tag(@event.picture.photo.url(:medium), class: "img-article") %>
 			<% end %>
 			<%= render partial: 'layouts/author', locals: { article: @event } %>
 		</div>
