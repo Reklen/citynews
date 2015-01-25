@@ -36,6 +36,11 @@ class CityCommentsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@city_comment.delete
+		redirect_to city_comments_path
+	end
+
 	private
 	def city_params
 		params.require(:city_comment).permit(:user_id, :title, :description, :comment_type, picture_attributes: [:photo])

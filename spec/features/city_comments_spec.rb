@@ -38,4 +38,13 @@ feature 'Validate Links in the page' do
 
 		expect(page).to have_content("Hey cityhall")
 	end
+
+	scenario "deletes one city comment" do
+		city_comment = user.city_comments.create(title: "Hi", description: "Hi", comment_type: true)
+
+		visit city_comment_path(city_comment)
+		click_link "Deletar"
+
+		expect(page).to have_content "Recado para a prefeitura"
+	end
 end
