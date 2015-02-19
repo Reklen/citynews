@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
 
   def index
-  	@articles = Article.last(2).reverse
+    @articles = Article.last(2).reverse
   end
 
   def weather
-  	@weather = Weather.lookup(12820853, Weather::Units::CELSIUS)
+    @weather = Weather.lookup(428306, Weather::Units::CELSIUS)
   end
 end
