@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def weather
-    @weather = Weather.lookup(428306, Weather::Units::CELSIUS)
+    #Weather.lookup(428306, Weather::Units::CELSIUS) ||
+    @weather = Weather.lookup(455827, Weather::Units::CELSIUS)
   end
 end
