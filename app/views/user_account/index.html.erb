@@ -34,7 +34,7 @@
 <% end %>
 
 <% unless @city_comments.empty? %>
-  <h3>Recado para Prefeitura</h3>
+  <h3>Recados para Prefeitura</h3>
   <% @city_comments.each do |city_comment| %>
     <div class=''>
       <p><%= link_to city_comment.title, city_comment_path(city_comment) %>
