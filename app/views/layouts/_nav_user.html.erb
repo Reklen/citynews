@@ -17,6 +17,7 @@
       <li>
         <%= image_tag current_user.image, class: "user-logo" %>
         <ul class="drop-down">
+          <li><%= link_to "Minha Conta", user_account_path %></li>
           <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
