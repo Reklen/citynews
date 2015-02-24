@@ -29,3 +29,8 @@ a {
 .container {
 	@include font-style('News Cycle', sans-serif, 1.1em);
 }
+
+time {
+  font-size: 0.8em;
+  color: #777;
+}
