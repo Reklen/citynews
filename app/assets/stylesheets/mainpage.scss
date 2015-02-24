@@ -78,3 +78,23 @@
 		text-decoration: underline;
 	}
 }
+
+.grid-100{
+	width: 100%;
+	float: left;
+}
+.grid-50{
+	width: 50%;
+	float: left;
+}
+.grid-25{
+	width: 25%;
+	float: left;
+}
+
+.user-account{
+	p {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+}

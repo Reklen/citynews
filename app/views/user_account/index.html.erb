@@ -1,46 +1,41 @@
 <h2>Meus Artigos</h2>
 
 <% unless @articles.empty? %>
-  <h3>Artigos</h3>
-  <% @articles.each do |article| %>
-    <div class=''>
-      <p><%= link_to article.title, article_path(article) %>
-        <time>criado em: <%= article.updated_at.strftime("%d/%m/%Y") %></time>
-      </p>
-    </div>
-  <% end %>
+  <div class='grid-50 user-account'>
+    <h3>Artigos</h3>
+    <% @articles.each do |article| %>
+      <p><%= link_to article.title, article_path(article) %></p>
+      <time>criado em: <%= article.updated_at.strftime("%d/%m/%Y") %></time>
+    <% end %>
+  </div>
 <% end %>
 
 <% unless @events.empty? %>
-  <h3>Eventos</h3>
-  <% @events.each do |event| %>
-    <div class=''>
-      <p><%= link_to event.title, event_path(event) %>
-        <time>criado em: <%= event.updated_at.strftime("%d/%m/%Y") %></time>
-      </p>
-    </div>
-  <% end %>
+  <div class='grid-50 user-account'>
+    <h3>Eventos</h3>
+    <% @events.each do |event| %>
+      <p><%= link_to event.title, event_path(event) %></p>
+      <time>criado em: <%= event.updated_at.strftime("%d/%m/%Y") %></time>
+    <% end %>
+  </div>
 <% end %>
 
 <% unless @jobs.empty? %>
-  <h3>Empregos</h3>
-  <% @jobs.each do |job| %>
-    <div class=''>
-      <p><%= link_to job.title, job_path(job) %>
-        <time>criado em: <%= job.updated_at.strftime("%d/%m/%Y") %></time>
-      </p>
-    </div>
-  <% end %>
+  <div class='grid-50 user-account'>
+    <h3>Empregos</h3>
+    <% @jobs.each do |job| %>
+      <p><%= link_to job.title, job_path(job) %></p>
+      <time>criado em: <%= job.updated_at.strftime("%d/%m/%Y") %></time>
+    <% end %>
+  </div>
 <% end %>
 
 <% unless @city_comments.empty? %>
-  <h3>Recados para Prefeitura</h3>
-  <% @city_comments.each do |city_comment| %>
-    <div class=''>
-      <p><%= link_to city_comment.title, city_comment_path(city_comment) %>
-        <time>criado em: <%= city_comment.updated_at.strftime("%d/%m/%Y") %></time>
-      </p>
-    </div>
-  <% end %>
+  <div class='grid-50 user-account'>
+    <h3>Recados para Prefeitura</h3>
+    <% @city_comments.each do |city_comment| %>
+      <p><%= link_to city_comment.title, city_comment_path(city_comment) %></p>
+      <time>criado em: <%= city_comment.updated_at.strftime("%d/%m/%Y") %></time>
+    <% end %>
+  </div>
 <% end %>
-
