@@ -1,100 +1,121 @@
 .headline {
-	display: block;
-	width: 100%;
-	margin-top: 2px;
-	img {
-		width: 100%;
-	}
-	h2 {
-		margin: 0;
-	}
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  img {
+    width: 100%;
+  }
+  h2 {
+    margin: 0;
+  }
 }
 
 .main-news {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .card {
-	width: 48%;
-	float: left;
-	margin: 1%;
+  width: 48%;
+  float: left;
+  margin: 1%;
+}
 
-	.img-wrapper {
-		width: 100%;
-		height: 200px;
-		display: block;
-		overflow: hidden;
-		position: relative;
+.img-wrapper {
+  width: 100%;
+  height: 200px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
 
-		img {
-			position: absolute;
-			top: -35%;
-			width: 100%;
-			height: auto;
-		}
-	}
+.img-article {
+  position: relative;
+  // top: -15%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-	.author {
-		position: relative;
-		top: -20px;
-		font-size: 0.6em;
-		text-align: left;
-	}
-	.mini-news {
+.mini-news {
+  position: relative;
+  top: -20px;
 
+  h4 {
+    margin: 0;
+  }
 
-		h4 {
-			margin: 0;
-		}
+  p {
+    margin-top: 0;
+    overflow: hidden;
+    height: 80px;
+  }
+}
 
-		p {
-			margin-top: 0;
-			overflow: hidden;
-			height: 80px;
-		}
-	}
+.mini-cityhall {
+  display: block;
+  height: auto;
+  .title {
+    font-size: 0.8em;
+    // color: #FF3838;
+  }
+
+  .description {
+    font-size: 0.6em;
+  }
+}
+
+.author {
+  font-size: 0.6em;
+  text-align: left;
+  display: block;
 }
 
 .card.full {
-	width: 100%;
-	.img-wrapper {
-		text-align: center;
-		height: auto;
-		overflow: none;
-		img {
-			width: auto;
-			top: 0;
-			position: relative;
-		}
-	}
-	a:hover {
-		text-decoration: underline;
-	}
+  width: 100%;
+  .img-wrapper {
+    text-align: center;
+    height: auto;
+    overflow: none;
+    img {
+      width: auto;
+      top: 0;
+      position: relative;
+    }
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .card a:hover {
-	h4 {
-		text-decoration: underline;
-	}
+  h4 {
+    text-decoration: underline;
+  }
 }
 
 .grid-100{
-	width: 100%;
-	float: left;
+  width: 100%;
+  float: left;
 }
+
+.grid-75 {
+  width: 75%;
+  float: left;
+}
+
 .grid-50{
-	width: 50%;
-	float: left;
+  width: 50%;
+  float: left;
 }
 .grid-25{
-	width: 25%;
-	float: left;
+  width: 25%;
+  float: left;
 }
 
 .user-account{
-	p {
-		padding-bottom: 0;
-		margin-bottom: 0;
-	}
+  p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
 }
