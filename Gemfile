@@ -57,5 +57,9 @@ end
 gem 'weather-icons-rails'
 gem 'weather-api'
 
+gem 'nprogress-rails'
+gem 'turbolinks_transitions'
+
+
 
 
