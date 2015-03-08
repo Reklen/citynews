@@ -1,22 +1,20 @@
-<div data-article-form >
-  <%= simple_form_for @article do |f| %>
-    <ul>
-      <li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
-      <li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
-      <li>Anexar:</li>
-      <li class="file-upload">
-          <%= image_tag "icon-camera.png" %>
+<%= simple_form_for @article do |f| %>
+  <ul>
+    <li> <%= f.input :title, placeholder: 'Título', label: false %> </li>
+    <li> <%= f.input :description, placeholder: 'Descrição', as: :text, label: false %></li>
+    <li>Anexar:</li>
+    <li class="file-upload">
+        <%= image_tag "icon-camera.png" %>
+        <!--%= f.input :picture, as: :file, label: false%-->
+
+        <%= f.fields_for :picture_attributes do |picture_fields| %>
+          <%= picture_fields.file_field :photo %>
           <!--%= f.input :picture, as: :file, label: false%-->
+        <% end %>
+    </li>
+  </ul>
 
-          <%= f.fields_for :picture_attributes do |picture_fields| %>
-            <%= picture_fields.file_field :photo %>
-            <!--%= f.input :picture, as: :file, label: false%-->
-          <% end %>
-      </li>
-    </ul>
-
-    <div class="submit-area">
-      <%= f.button :submit, "Enviar"%>
-    </div>
-  <% end %>
-</div>
+  <div class="submit-area">
+    <%= f.button :submit, "Enviar"%>
+  </div>
+<% end %>
