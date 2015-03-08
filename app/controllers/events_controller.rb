@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	before_action :set_event, only: [:edit, :update, :destroy]
-	
+
 	def index
 		@events = Event.all
 	end
@@ -12,6 +12,9 @@ class EventsController < ApplicationController
 
 	def new
 		@event = current_user.events.new
+		respond_to do |format|
+      format.html { render layout: false }
+    end
 	end
 
 	def create

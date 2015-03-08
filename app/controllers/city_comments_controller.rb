@@ -1,7 +1,7 @@
 class CityCommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_city_comment, only: [:edit, :update, :destroy]
-  
+
   def index
     @city_comments = CityComment.all
     end
@@ -12,6 +12,9 @@ class CityCommentsController < ApplicationController
 
   def new
     @city_comment = current_user.city_comments.new
+    respond_to do |format|
+      format.html { render layout: false }
+    end
   end
 
   def create
