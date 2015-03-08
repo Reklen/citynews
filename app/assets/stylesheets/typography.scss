@@ -4,30 +4,34 @@
 @import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
 
 a {
-	text-decoration: none;
-	color: #777;
+  text-decoration: none;
+  color: #777;
 }
 
 @mixin font-style($family1, $family2, $size: 1em, $color: #353535) {
-	font-family: $family1, $family2;
-	font-size: $size;
-	color: $color;
+  font-family: $family1, $family2;
+  font-size: $size;
+  color: $color;
 }
 
-.main-logo a{
-	@include font-style('Playfair Display SC', serif, 1.8em);
+.main-logo a {
+  @include font-style('Playfair Display SC', serif, 1.8em);
 }
 
 .sub-logo {
-	@include font-style('Goudy Bookletter 1911', serif, 1.2em, #DC3522);
+  @include font-style('Goudy Bookletter 1911', serif, 1.2em, #DC3522);
 }
 
 .weather {
-	@include font-style('Merriweather Sans', sans-serif, 2em);
+  @include font-style('Merriweather Sans', sans-serif, 2em);
 }
 
 .container {
-	@include font-style('News Cycle', sans-serif, 1.1em);
+  @include font-style('News Cycle', sans-serif, 1.1em);
+}
+
+.modal {
+  @include font-style('News Cycle', sans-serif, 1.1em);
 }
 
 time {
