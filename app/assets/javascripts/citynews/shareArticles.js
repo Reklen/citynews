@@ -3,23 +3,36 @@ CityNews.ShareModal = (function() {
     this.container = container;
     this.mainContent = $('#content');
     this.modal = $('[data-trigger-modal]');
+    this.modalTemplates = {};
+
     this.addEventListeners();
   }
 
   var fn = ShareModal.prototype;
 
   fn.addEventListeners = function() {
-    this.container.on('click', '[data-share]', this.showModal.bind(this));
+    this.container.on('click', '[data-share]', this.run.bind(this));
   };
 
-  fn.showModal = function(e) {
+  fn.run = function(e) {
     e.preventDefault();
     var link = $(e.currentTarget),
         route = link.data('share');
 
     this.hideMainContent();
-    this.displayModal(route);
 
+    if (this.modalTemplates[route] === undefined) {
+      console.log('getAndDisplayModal: ', route);
+      this.getAndShowModal(route);
+    } else {
+      console.log('showModal: ', route);
+      this.showModal(this.modalTemplates[route]);
+    }
+  };
+
+  fn.showModal = function(template) {
+    this.modal.empty();
+    this.modal.append(template);
   };
 
   fn.hideMainContent = function() {
@@ -31,21 +44,20 @@ CityNews.ShareModal = (function() {
     this.mainContent.show();
   };
 
-  fn.displayModal = function(route) {
+  fn.getAndShowModal = function(route) {
     var response = $.ajax({
       url: '/' + route + '/new',
       type: 'get'
     });
 
     response.done(function(data){
-      this.modal.append(data);
+      this.modalTemplates[route] = data;
+      this.showModal(this.modalTemplates[route]);
     }.bind(this));
 
-    response.error(function(data) {
-      console.log('Error');
+    response.fail(function(data) {
       this.hideMainContent();
-    });
-
+    }.bind(this));
   };
 
   return ShareModal;
