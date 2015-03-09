@@ -22,10 +22,8 @@ CityNews.ShareModal = (function() {
     this.hideMainContent();
 
     if (this.modalTemplates[route] === undefined) {
-      console.log('getAndDisplayModal: ', route);
       this.getAndShowModal(route);
     } else {
-      console.log('showModal: ', route);
       this.showModal(this.modalTemplates[route]);
     }
   };
