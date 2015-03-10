@@ -1,25 +1,20 @@
-<h2>Promoções da Semana</h2>
+<h2><%= t('page.promotions.title') %></h2>
 <% @promotions.each do |promotion| %>
-		<div class="card">
-			<a href="<%= promotion_path(promotion) %>">
+  <div class="card">
+    <a href="<%= promotion_path(promotion) %>">
+      <div class="img-wrapper">
+        <% if promotion.picture %>
+          <%= image_tag(promotion.picture.photo.url(:medium), class: "img-article") %>
+        <% end %>
+      </div>
 
-				<div class="img-wrapper">
-					<% if promotion.picture %>
-						<%= image_tag(promotion.picture.photo.url(:medium), class: "img-article") %>
-					<% end %>
-				</div>
+      <%= render partial: 'layouts/author', locals: { article: promotion } %>
 
-				<%= render partial: 'layouts/author', locals: { article: promotion } %>
-
-				<div class="mini-news">
-
-					<h4><%= promotion.title %></h4>
-					<p><%= promotion.description %></p>
-					<span>R$<%= promotion.price %></span>
-				</div>
-
-			</a>
-		</div>
-
+      <div class="mini-news">
+        <h4><%= promotion.title %></h4>
+        <p><%= promotion.description %></p>
+        <span>R$<%= promotion.price %></span>
+      </div>
+    </a>
+  </div>
 <% end %>
-

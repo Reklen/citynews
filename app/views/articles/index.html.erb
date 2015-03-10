@@ -1,21 +1,21 @@
-<h2>Notícias</h2>
+<h2><%= t('page.news.title') %></h2>
 <% @articles.each do |article| %>
-		<div class="card">
-			<a href="<%= article_path(article) %>">
+    <div class="card">
+      <a href="<%= article_path(article) %>">
 
-				<div class="img-wrapper">
-					<% if article.picture %>
-						<%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
-					<% end %>
-				</div>
+        <div class="img-wrapper">
+          <% if article.picture %>
+            <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
+          <% end %>
+        </div>
 
-				<%= render partial: 'layouts/author', locals: { article: article } %>
+        <%= render partial: 'layouts/author', locals: { article: article } %>
 
-				<div class="mini-news">
-					<h4><%= article.title %></h4>
-					<p><%= article.description %></p>
-				</div>
+        <div class="mini-news">
+          <h4><%= article.title %></h4>
+          <p><%= article.description %></p>
+        </div>
 
-			</a>
-		</div>
+      </a>
+    </div>
 <% end %>
