@@ -4,24 +4,24 @@
       <li>
         <%= image_tag("plus-btn-2.png") %>
         <ul class="drop-down">
-          <li><a href="#" data-share='articles' >Notícias</a></li>
-          <li><a href="#" data-share='events' >Eventos</a></li>
-          <li><a href="#" data-share='promotions' >Promoções</a></li>
-          <li><a href="#" data-share='jobs' >Empregos</a></li>
-          <li><a href="#" data-share='city_comments' >Prefeitura</a></li>
+          <li><a href="#" data-share='articles'><%= t('header.news') %></a></li>
+          <li><a href="#" data-share='events'><%= t('header.events') %></a></li>
+          <li><a href="#" data-share='promotions'><%= t('header.promotions') %></a></li>
+          <li><a href="#" data-share='jobs'><%= t('header.jobs') %></a></li>
+          <li><a href="#" data-share='city_comments' ><%= t('header.city_hall') %></a></li>
         </ul>
       </li>
 
       <li>
         <%= image_tag current_user.image, class: "user-logo" %>
         <ul class="drop-down">
-          <li><%= link_to "Minha Conta", user_account_path %></li>
-          <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to t('header.my_account'), user_account_path %></li>
+          <li><%= link_to t('header.exit'), destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
     <% else %>
       <li>
-        <%= link_to "Logar com Facebook", user_omniauth_authorize_path(:facebook) %>
+        <%= link_to t('header.login'), user_omniauth_authorize_path(:facebook) %>
       </li>
     <% end %>
   </ul>

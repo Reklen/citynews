@@ -1,25 +1,25 @@
-<h2>Eventos</h2>
+<h2><%= t('page.events.title') %></h2>
 <% @events.each do |event| %>
-		<div class="card">
-			<a href="<%= event_path(event) %>">
+    <div class="card">
+      <a href="<%= event_path(event) %>">
 
-				<div class="img-wrapper">
-					<% if event.picture %>
-					<%= image_tag(event.picture.photo.url(:medium), class: "img-article") %>
-					<% end %>
-				</div>
+        <div class="img-wrapper">
+          <% if event.picture %>
+          <%= image_tag(event.picture.photo.url(:medium), class: "img-article") %>
+          <% end %>
+        </div>
 
-				<%= render partial: 'layouts/author', locals: { article: event } %>
+        <%= render partial: 'layouts/author', locals: { article: event } %>
 
-				<div class="mini-news">
+        <div class="mini-news">
 
-					<h4><%= event.title %></h4>
-					<p><%= event.description %></p>
-					<span>Quando: <%= event.date.day %>/<%= event.date.month %>/<%= event.date.year %></span>
-				</div>
+          <h4><%= event.title %></h4>
+          <p><%= event.description %></p>
+          <span>Quando: <%= event.date.day %>/<%= event.date.month %>/<%= event.date.year %></span>
+        </div>
 
-			</a>
-		</div>
+      </a>
+    </div>
 
 <% end %>
 

@@ -1,0 +1,37 @@
+pt-BR:
+  page_title: O jornal das regiões
+
+  header:
+    title: REPRESA DE FURNAS
+    subtitle:  NEWS
+    share: compartilhe
+    home: Principal
+    news: Notícias
+    events: Eventos
+    promotions: Promoções
+    jobs: Empregos
+    city_hall: Fale com a prefeitura
+    my_account: Minha Conta
+    exit: Sair
+    login: Logar com Facebook
+  page:
+    news:
+      title: Notícias
+      form_new_title: Compartilhe uma notícia
+      form_edit_title: Edite a notícia
+    events:
+      title: Eventos
+      form_new_title: Compartilhe um evento
+      form_edit_title: Edite o evento
+    promotions:
+      title: Promoções da Semana
+      form_new_title: Compartilhe uma promoção
+      form_edit_title: Edite a promoção
+    jobs:
+      title: Empregos da Semana
+      form_new_title: Compartilhe uma vaga de emprego
+      form_edit_title: Edite a vaga de emprego
+    city_hall:
+      title: Fale com a prefeitura
+      form_new_title: Compartilhe uma mensagem para prefeitura
+      form_edit_title: Edite a mensagem para prefeitura
