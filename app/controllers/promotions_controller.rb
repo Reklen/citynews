@@ -12,6 +12,9 @@ class PromotionsController < ApplicationController
 
 	def new
 		@promotion = current_user.promotions.new
+		respond_to do |format|
+      format.html { render layout: false }
+    end
 	end
 
 	def create

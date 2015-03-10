@@ -1,29 +1,36 @@
 html, body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .container{
-	display: block;
-	width: 1000px;
-	margin: 0 auto;
+  display: block;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .user-logo {
-	border-radius: 25px;
-	width: 40px;
-	height: 40px;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+}
+
+.user-logo-square {
+  width: 40px;
+  height: 40px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .left {
-	float: left;
+  float: left;
 }
 .right {
-	float: right;
+  float: right;
 }
 
 *{
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
 }

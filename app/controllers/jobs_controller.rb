@@ -12,6 +12,9 @@ class JobsController < ApplicationController
 
 	def new
 		@job = current_user.jobs.new
+		respond_to do |format|
+      format.html { render layout: false }
+    end
 	end
 
 	def create

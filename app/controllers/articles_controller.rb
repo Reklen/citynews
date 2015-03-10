@@ -12,6 +12,9 @@ class ArticlesController < ApplicationController
 
   def new
   	@article = current_user.articles.new
+    respond_to do |format|
+      format.html { render layout: false }
+    end
   end
 
   def edit

@@ -1,60 +1,70 @@
 <article class="headline">
-	<%= image_tag("capitolio.png") %>
-	<h2>Um novo jornal está no ar</h2>
-	<p><%= Faker::Lorem.paragraph(6) %> </p>
+  <%= image_tag("capitolio.png") %>
+  <h2>Um novo jornal está no ar</h2>
+  <p><%= Faker::Lorem.paragraph(6) %> </p>
 </article>
 
 
 <section class="main-news">
-	<div class="card">
-		<h3>Últimas Notícias</h3>
 
-		<% @articles.each do |article| %>
-			<a href="<%= article_path(article) %>">
-				<article class="short-new">
+  <div class='grid-75'>
 
-					<div class="img-wrapper">
-						<% if article.picture %>
-							<%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
-						<% end %>
-					</div>
+    <div class="card">
+      <h3>Últimas Notícias</h3>
 
-					<%= render partial: 'layouts/author', locals: { article: article } %>
+      <% @articles.each do |article| %>
+        <a href="<%= article_path(article) %>">
+          <article class="short-new">
 
-					<div class="mini-news">
-						<h4><%= article.title %></h4>
-						<p><%= article.description %></p>
-					</div>
+            <div class="img-wrapper">
+              <% if article.picture %>
+                <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
+              <% end %>
+            </div>
 
-				</article>
-			</a>
-		<% end %>
-	</div>
+            <div class="mini-news">
+              <%= render partial: 'layouts/author', locals: { article: article } %>
 
-	<div class="card">
-		<h3>Eventos</h3>
-		<article class="event">
-			<div class="img-wrapper">
-				<%= image_tag("anonovo.jpg", class: "img-article") %>
-			</div>
-			<div class="mini-news">
-				<h4>Ano novo da alegria!</h4>
-				<p><%= Faker::Lorem.paragraph(3) %></p>
-			</div>
-		</article>
+              <h4><%= article.title %></h4>
+              <p><%= article.description %></p>
+            </div>
 
-		<article class="event">
-			<div class="img-wrapper">
-				<%= image_tag("carnaval.jpg", class: "img-article") %>
-			</div>
-			<div class="mini-news">
-				<h4>O melhor carnaval da Região</h4>
-				<p><%= Faker::Lorem.paragraph(3) %></p>
-			</div>
-		</article>
-	</div>
+          </article>
+        </a>
+      <% end %>
+    </div>
 
-<!-- 	<div class="card">
-		<h3>Promoções</h3>
-	</div> -->
+    <div class="card">
+      <h3>Próximos Eventos</h3>
+      <article class="event">
+        <div class="img-wrapper">
+          <%= image_tag("anonovo.jpg", class: "img-article") %>
+        </div>
+        <div class="mini-news">
+          <h4>Ano novo da alegria!</h4>
+          <p><%= Faker::Lorem.paragraph(3) %></p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+
+
+  <div class='grid-25'>
+    <h3>Recado para a prefeitura</h3>
+    <ul>
+    <% @city_comments.each do |cc| %>
+      <li>
+      <a href="<%= city_comment_path(cc) %>">
+        <div class="mini-cityhall">
+          <span class="grid-25"><%= image_tag cc.user.image, class: "user-logo-square" %></span>
+          <div class="grid-75"><%= cc.title %></div>
+        </div>
+      </a>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+
 </section>

@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   def index
     @articles = Article.last(2).reverse
+    @eventes = Event.last(2).reverse
+    @city_comments = CityComment.last(4).reverse
   end
 
   def weather

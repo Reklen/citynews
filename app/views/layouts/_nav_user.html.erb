@@ -1,19 +1,17 @@
-<nav class="nav-user">
+<nav class="nav-user" data-menu-share>
   <ul>
     <% if current_user %>
       <li>
-
         <%= image_tag("plus-btn-2.png") %>
         <ul class="drop-down">
-          <li><%= link_to "Notícias", new_article_path %></li>
-          <li><%= link_to "Eventos", new_event_path %></li>
-          <li><%= link_to "Promoções", new_promotion_path %></li>
-<!--      <li><%= link_to "Turismo", new_article_path %></li>-->          <li><%= link_to "Empregos", new_job_path %></li>
-          <li><%= link_to "Enquetes", new_article_path %></li>
-          <li><%= link_to "Prefeitura", new_city_comment_path %></li>
+          <li><a href="#" data-share='articles' >Notícias</a></li>
+          <li><a href="#" data-share='events' >Eventos</a></li>
+          <li><a href="#" data-share='promotions' >Promoções</a></li>
+          <li><a href="#" data-share='jobs' >Empregos</a></li>
+          <li><a href="#" data-share='city_comments' >Prefeitura</a></li>
         </ul>
-
       </li>
+
       <li>
         <%= image_tag current_user.image, class: "user-logo" %>
         <ul class="drop-down">
