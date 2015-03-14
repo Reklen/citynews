@@ -46,8 +46,7 @@ gem 'omniauth-facebook'
 gem 'simple_form'
 gem 'paperclip', '~> 4.2'
 
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+gem 'searchkick'
 
 
 group :development, :test do
