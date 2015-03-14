@@ -44,12 +44,15 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'simple_form'
-gem "paperclip", "~> 4.2"
+gem 'paperclip', '~> 4.2'
+
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   gem 'capybara'
 end
@@ -59,7 +62,3 @@ gem 'weather-api'
 
 gem 'nprogress-rails'
 gem 'turbolinks_transitions'
-
-
-
-
