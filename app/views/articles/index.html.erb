@@ -1,7 +1,10 @@
 <h2><%= t('page.news.title') %></h2>
+
+
 <% @articles.each do |article| %>
-    <div class="card">
-      <a href="<%= article_path(article) %>">
+  <div class='grid-25'>
+    <a href="<%= article_path(article) %>">
+      <article class="short-new">
 
         <div class="img-wrapper">
           <% if article.picture %>
@@ -9,13 +12,13 @@
           <% end %>
         </div>
 
-        <%= render partial: 'layouts/author', locals: { article: article } %>
-
         <div class="mini-news">
+          <%= render partial: 'layouts/author', locals: { article: article } %>
+
           <h4><%= article.title %></h4>
-          <p><%= article.description %></p>
         </div>
 
-      </a>
-    </div>
+      </article>
+    </a>
+  </div>
 <% end %>
