@@ -1,28 +1,22 @@
-== README
+Description
+===========
+CityNews is a project to share news all arround the world.
+By just selecting the area you can view news from different cities, newborrods,
+countries and continents, just by selecting the area thru a map.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this project you need to.
+================================
 
-Things you may want to cover:
+Install Elastic Search
+brew install elasticsearch
 
-* Ruby version
+Run elasticsearch(port 9200)
+elasticsearch
 
-* System dependencies
+Reindex DB
+rake searchkick:reindex:all
 
-* Configuration
+Database
+========
+rake db:seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
