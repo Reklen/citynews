@@ -46,8 +46,7 @@ gem 'omniauth-facebook'
 gem 'simple_form'
 gem 'paperclip', '~> 4.2'
 
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+gem 'searchkick'
 
 
 group :development, :test do
@@ -55,6 +54,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   gem 'capybara'
+  gem 'pry-rails'
 end
 
 gem 'weather-icons-rails'
