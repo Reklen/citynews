@@ -3,7 +3,9 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy]
 
   def index
-  	@articles = Article.all.reverse
+    # @articles = Article.all.reverse
+    @articles = Article.search "*"
+    # binding.pry
   end
 
   def show
@@ -11,7 +13,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-  	@article = current_user.articles.new
+    @article = current_user.articles.new
     respond_to do |format|
       format.html { render layout: false }
     end
@@ -23,12 +25,12 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.new(article_params)
 
-  	if @article.save
-  		redirect_to @article
-  	else
+    if @article.save
+      redirect_to @article
+    else
       flash[:notice] = "A notícia não pode ser salva"
-  		render 'new'
-  	end
+      render 'new'
+    end
   end
 
   def update
@@ -47,9 +49,9 @@ class ArticlesController < ApplicationController
   end
 
   private
-  	def article_params
+    def article_params
       params.require(:article).permit(:title, :description, :user_id, picture_attributes: [:photo])
-  	end
+    end
 
     def set_article
       @article = current_user.articles.find(params[:id])
