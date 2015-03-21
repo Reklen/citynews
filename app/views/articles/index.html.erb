@@ -1,24 +1,29 @@
-<h2><%= t('page.news.title') %></h2>
+<script id="Handlebars-Articles" type="text/javascript">
+  {{#each Articles}}
+    <div class="grid-25">
+      <a href="{{link}}">
+        <article class="short-new">
+
+          <div class="img-wrapper">
+            {{#if picture_url}}
+              <img src="picture_url" class="img-article">
+            {{/if}}
+          </div>
+
+          <div class="mini-news">
+            <div class="author">
+              <span><img src="{{user_image}}" class="user-logo"></span>
+              <span>por: {{user_name}}</span>
+            </div>
+
+            <h4>{{title}}</h4>
+          </div>
+
+        </article>
+      </a>
+    </div>
+  {{/each}}
+</script>
 
 
-<% @articles.each do |article| %>
-  <div class='grid-25'>
-    <a href="<%= article_path(article) %>">
-      <article class="short-new">
 
-        <div class="img-wrapper">
-          <% if article.picture %>
-            <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
-          <% end %>
-        </div>
-
-        <div class="mini-news">
-          <%= render partial: 'layouts/author', locals: { article: article } %>
-
-          <h4><%= article.title %></h4>
-        </div>
-
-      </article>
-    </a>
-  </div>
-<% end %>

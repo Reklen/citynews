@@ -2,6 +2,7 @@ CityNews.App = (function() {
   'use-strict';
 
   function App() {
+
   }
 
   var fn = App.prototype;
