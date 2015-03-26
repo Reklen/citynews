@@ -1,101 +1,104 @@
 /*
-	- Creates the main header
+  - Creates the main header
 
-		+ main header:
-			# wheather
-			# Logo
-			# User navigation bar
+    + main header:
+      # wheather
+      # Logo
+      # User navigation bar
 
-		+ sub header:
-			# main links
+    + sub header:
+      # main links
 
 */
 @mixin header-user-block($width) {
-	width: $width;
-	display: inline-block;
-	vertical-align: middle;
-	text-align: center;
-	margin: 0;
+  width: $width;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0;
 }
 
 header {
-	display: block;
-	height: auto;
-	li {
-		display: inline-block;
-	}
-	.main-header {
-		.weather {
-			@include header-user-block(19%);
-		}
-		.logo {
-			@include header-user-block(60%);
-			.main-logo {
-				margin-bottom: 0;
-				padding-bottom: 0;
-			}
-			.sub-logo {
-				padding-top: 0;
-				margin: 0;
-				position: relative;
-				top: -10px;
-			}
-		}
-		.nav-user {
-			@include header-user-block(20%);
+  display: block;
+  height: auto;
+  li {
+    display: inline-block;
+  }
+  .main-header {
+    #map {
+      @include header-user-block(19%);
+      // height: 200px;
+      border-radius: 50px;
+      height: 200px;
+    }
+    .logo {
+      @include header-user-block(60%);
+      .main-logo {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .sub-logo {
+        padding-top: 0;
+        margin: 0;
+        position: relative;
+        top: -10px;
+      }
+    }
+    .nav-user {
+      @include header-user-block(20%);
 
-			ul {
-				li {
-					padding: 10px;
-					position: relative;
+      ul {
+        li {
+          padding: 10px;
+          position: relative;
 
-					img {
-						vertical-align: middle;
-					}
-				}
-				li:hover{
-					.drop-down {
-						display: inline;
-					}
-				}
-			}
-		}
-	}
-	.sub-header {
-		display: inline-block;
-		width: 100%;
-		background-color: #E0E0E0;
-		margin: 0;
-		nav {
-			text-align: center;
-			a{
-				padding: 15px 20px;
-				&:hover{
-					background-color: #FFF;
-				}
-			}
-		}
-	}
-	.drop-down {
+          img {
+            vertical-align: middle;
+          }
+        }
+        li:hover{
+          .drop-down {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+  .sub-header {
+    display: inline-block;
+    width: 100%;
+    background-color: #E0E0E0;
+    margin: 0;
+    nav {
+      text-align: center;
+      a{
+        padding: 15px 20px;
+        &:hover{
+          background-color: #FFF;
+        }
+      }
+    }
+  }
+  .drop-down {
     position:absolute;
     display: none;
     left: -90px;
     z-index: 1000;
 
-		li {
-			clear: both;
-	    background: #353535;
-			float: none;
-			text-align: center;
-			margin-bottom: 1px;
-			&:hover {
-				background: #555;
-			}
-			a {
-				display: block;
-				width: 150px;
-				color: #E0E0E0;
-			}
-		}
-	}
+    li {
+      clear: both;
+      background: #353535;
+      float: none;
+      text-align: center;
+      margin-bottom: 1px;
+      &:hover {
+        background: #555;
+      }
+      a {
+        display: block;
+        width: 150px;
+        color: #E0E0E0;
+      }
+    }
+  }
 }
