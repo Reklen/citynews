@@ -62,3 +62,5 @@ gem 'weather-api'
 
 gem 'nprogress-rails'
 gem 'turbolinks_transitions'
+
+gem 'leaflet-rails'
