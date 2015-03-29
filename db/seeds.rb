@@ -6,19 +6,38 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# user = User.new
-# user.email = 'test@example.com'
-# user.password = '123456'
-# user.password_confirmation = '123456'
-# user.name = 'John'
-# user.save!
+homer = User.new(
+  email: 'homer@example.com',
+  password: '123456haa',
+  password_confirmation: '123456haa',
+  name: 'Homer Simpson',
+  image: 'homer.jpeg')
+homer.save!
 
-user.first
+marge = User.new(
+  email: 'marge@example.com',
+  password: '123456hab',
+  password_confirmation: '123456hab',
+  name: 'Marge Simpson',
+  image: 'marge.jpeg')
+marge.save!
+
+lisa = User.new(
+  email: 'lisa@example.com',
+  password: '123456hac',
+  password_confirmation: '123456hac',
+  name: 'Lisa Simpson',
+  image: 'lisa.jpeg')
+lisa.save!
+
+users = [homer, marge, lisa]
+
 
 30.times do
+  user = users.sample
   article = user.articles.create(
     title: Faker::Lorem.sentence,
-    description: Faker::Lorem.paragraph(3),
+    description: Faker::Lorem.paragraph(3)
   )
 
   location = Location.create(
