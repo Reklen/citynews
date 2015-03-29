@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121190007) do
+ActiveRecord::Schema.define(version: 20150328185525) do
 
   create_table "articles", force: true do |t|
-    t.integer  "user_id",     null: false
+    t.integer  "user_id"
     t.string   "title",       null: false
     t.string   "description", null: false
     t.datetime "created_at"
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(version: 20150121190007) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "locations", force: true do |t|
+    t.integer  "locationable_id"
+    t.string   "locationable_type"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["locationable_id", "locationable_type"], name: "index_locations_on_locationable_id_and_locationable_type"
 
   create_table "pictures", force: true do |t|
     t.integer  "imageable_id"
