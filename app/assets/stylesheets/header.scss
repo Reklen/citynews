@@ -26,10 +26,11 @@ header {
   }
   .main-header {
     #map {
+
       @include header-user-block(19%);
       // height: 200px;
-      border-radius: 50px;
-      height: 200px;
+      // border-radius: 100px;
+      height: 50px;
     }
     .logo {
       @include header-user-block(60%);
