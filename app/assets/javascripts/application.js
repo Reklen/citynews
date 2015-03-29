@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require leaflet
 //= require nprogress
 //= require nprogress-turbolinks
