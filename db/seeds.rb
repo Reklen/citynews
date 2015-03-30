@@ -37,7 +37,8 @@ users = [homer, marge, lisa]
   user = users.sample
   article = user.articles.create(
     title: Faker::Lorem.sentence,
-    description: Faker::Lorem.paragraph(3)
+    description: Faker::Lorem.paragraph(3),
+    picture_attributes: { photo: File.new("app/assets/images/medium/springfield.jpg") }
   )
 
   location = Location.create(
