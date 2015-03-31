@@ -3,6 +3,11 @@
 @import url(http://fonts.googleapis.com/css?family=Merriweather+Sans);
 @import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
 
+@font-face {
+  font-family: 'Aleo';
+  src: url('/assets/aleo-regular-webfont.ttf');
+}
+
 a {
   text-decoration: none;
   color: #777;
@@ -14,9 +19,9 @@ a {
   color: $color;
 }
 
-.main-logo a {
-  @include font-style('Playfair Display SC', serif, 1.8em);
-}
+// .main-logo a {
+//   @include font-style('Playfair Display SC', serif, 1.8em);
+// }
 
 .sub-logo {
   @include font-style('Goudy Bookletter 1911', serif, 1.2em, #DC3522);
@@ -37,4 +42,17 @@ a {
 time {
   font-size: 0.8em;
   color: #777;
+}
+
+.main-logo a {
+  font-family: serif;
+  font-size: 1.5em;
+  color: #353535;
+}
+
+.sub-header a {
+  font-family: 'Aleo',serif;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #353535;
 }

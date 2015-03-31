@@ -1,9 +1,6 @@
 <header>
   <div class="main-header">
-    <div class="weather">
-      <span><%= wi_icon(@weather.condition.text.downcase) %></span>
-      <span><%= @weather.condition.temp %>&deg;</span>
-    </div>
+    <div id="map"></div>
 
     <div class="logo">
       <h1 class="main-logo"><%= link_to t('header.title'), root_path %></h1>

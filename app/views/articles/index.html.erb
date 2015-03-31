@@ -1,24 +1,26 @@
 <h2><%= t('page.news.title') %></h2>
 
-
 <% @articles.each do |article| %>
   <div class='grid-25'>
     <a href="<%= article_path(article) %>">
-      <article class="short-new">
 
-        <div class="img-wrapper">
-          <% if article.picture %>
-            <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
-          <% end %>
-        </div>
+      <div class="card">
+        <article class="short-new">
 
-        <div class="mini-news">
-          <%= render partial: 'layouts/author', locals: { article: article } %>
+          <div class="img-wrapper">
+            <% if article.picture %>
+              <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
+            <% end %>
+          </div>
 
-          <h4><%= article.title %></h4>
-        </div>
+          <div class="mini-news">
+            <%= render partial: 'layouts/author', locals: { article: article } %>
 
-      </article>
+            <h4><%= article.title %></h4>
+          </div>
+
+        </article>
+      </div>
     </a>
   </div>
 <% end %>
