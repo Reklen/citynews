@@ -13,10 +13,12 @@ brew install elasticsearch
 Run elasticsearch(port 9200)
 elasticsearch
 
-Reindex DB
-rake searchkick:reindex:all
+
 
 Database
 ========
 rake db:seed
 
+Certify that Elasticsearch is running before running the seed file
+Reindex DB
+rake searchkick:reindex:all
