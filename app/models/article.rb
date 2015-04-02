@@ -15,40 +15,30 @@ class Article < ActiveRecord::Base
   searchkick mappings: {
     article: {
       properties: {
+        author_name: { type: "string" },
+        author_picture: { type: "string"},
         title: { type: "string" },
-        location: {
-          type: "nested",
-          properties: {
-            latitude: { type: "float" },
-            location: { type: "float" },
-            city: { type: "string" },
-            state: { type: "string" },
-            country: { type: "string" }
-          }
-        },
-        picture: {
-          type: "nested",
-          properties: {
-            photo_file_name: { type: "string" }
-          }
-        }
+        latitude: { type: "float" },
+        location: { type: "float" },
+        city: { type: "string" },
+        state: { type: "string" },
+        country: { type: "string" },
+        photo_file_name: { type: "string" }
       }
     }
   }
 
   def search_data
     {
+      author_name: user.image,
+      author_picture: user.name,
       title: title,
-      location: {
-        latitude: location.latitude,
-        longitude: location.longitude,
-        city: location.city,
-        state: location.state,
-        country: location.country
-      },
-      picture: {
-        photo_file_name: picture.photo_file_name
-      }
+      latitude: location.latitude,
+      longitude: location.longitude,
+      city: location.city,
+      state: location.state,
+      country: location.country,
+      photo_file_name: picture.photo.url(:medium)
     }
   end
 
