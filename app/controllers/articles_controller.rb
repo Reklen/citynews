@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
 
   def index
     # @articles = Article.all.reverse
-    @articles = Article.search "*"
+    @articles = Article.search "dolores", fields: [{title: :word}]
+    p @articles.to_json
     # binding.pry
   end
 
@@ -26,6 +27,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params)
 
     if @article.save
+      Article.reindex
       redirect_to @article
     else
       flash[:notice] = "A notícia não pode ser salva"
