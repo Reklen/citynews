@@ -4,10 +4,16 @@ class ArticlesController < ApplicationController
 
   def index
     # @articles = Article.all.reverse
-    @articles = Article.search "dolores", fields: [{title: :word}]
+    @articles = Article.search "vitae"
+    # articles = Article.search "dolores", fields: [{title: :word}]
     # @articles = Article.search(query: {match: {'title' => 'lorem'}})
+    # render json: Article.search('vitae').map(&:description)
+    # render json: Article.search(query: {match: {title: 'vitae'}})
+    render json: Article.search('vitae', load: false)
 
     # binding.pry
+    # render json: articles
+    # render json: format_result(articles)
   end
 
   def show
@@ -58,5 +64,9 @@ class ArticlesController < ApplicationController
 
     def set_article
       @article = current_user.articles.find(params[:id])
+    end
+
+    def format_result(result)
+      result.response['hits']['hits'].map { |item| item }
     end
 end
