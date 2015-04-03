@@ -1,6 +1,23 @@
 class Article < ActiveRecord::Base
   # searchkick
   # scope :search_import, -> { includes(:picture, :location) }
+  searchkick merge_mappings: true, mappings: {
+    article: {
+      properties: {
+        author_name: { type: 'string' },
+        author_picture: { type: 'string'},
+        id: { type: 'integer' },
+        title: { type: 'string', analyzer: 'keyword' },
+        latitude: { type: 'float' },
+        location: { type: 'float' },
+        city: { type: 'string' },
+        state: { type: 'string' },
+        country: { type: 'string' },
+        photo_file_name: { type: 'string' }
+      }
+    }
+  }
+
 
   belongs_to :user
   has_one :picture, as: :imageable, dependent: :destroy
@@ -12,26 +29,13 @@ class Article < ActiveRecord::Base
 
   after_commit :reindex_article
 
-  searchkick mappings: {
-    article: {
-      properties: {
-        author_name: { type: "string" },
-        author_picture: { type: "string"},
-        title: { type: "string" },
-        latitude: { type: "float" },
-        location: { type: "float" },
-        city: { type: "string" },
-        state: { type: "string" },
-        country: { type: "string" },
-        photo_file_name: { type: "string" }
-      }
-    }
-  }
+
 
   def search_data
     {
       author_name: user.image,
       author_picture: user.name,
+      id: id,
       title: title,
       latitude: location.latitude,
       longitude: location.longitude,

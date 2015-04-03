@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
   def index
     # @articles = Article.all.reverse
     @articles = Article.search "dolores", fields: [{title: :word}]
-    p @articles.to_json
+    # @articles = Article.search(query: {match: {'title' => 'lorem'}})
+
     # binding.pry
   end
 
