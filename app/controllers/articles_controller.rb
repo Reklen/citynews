@@ -3,17 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy]
 
   def index
-    # @articles = Article.all.reverse
-    @articles = Article.search "vitae"
-    # articles = Article.search "dolores", fields: [{title: :word}]
-    # @articles = Article.search(query: {match: {'title' => 'lorem'}})
-    # render json: Article.search('vitae').map(&:description)
-    # render json: Article.search(query: {match: {title: 'vitae'}})
-    render json: Article.search('vitae', load: false)
-
-    # binding.pry
-    # render json: articles
-    # render json: format_result(articles)
+    render json: Article.search_by_location
   end
 
   def show
