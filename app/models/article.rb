@@ -45,8 +45,8 @@ class Article < ActiveRecord::Base
     Article.reindex # or reindex_async
   end
 
-  def self.search_by_location(latitude, longitude)
-    Article.search("ipsum", load: false, where: {location: {near: [latitude, longitude], within: 1000}}).to_json(root: true, except:[:_id, :_index, :_type, :_score, :location])
+  def self.search_by_location(latitude, longitude, distance)
+    Article.search("*", load: false, where: {location: {near: [latitude, longitude], within: distance}}).to_json(root: true, except:[:_id, :_index, :_type, :_score, :location])
   end
 
 end
