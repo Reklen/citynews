@@ -54,14 +54,12 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   gem 'capybara'
+  gem 'pry-rails'
 end
-
-gem 'weather-icons-rails'
-gem 'weather-api'
 
 gem 'nprogress-rails'
 gem 'turbolinks_transitions'
 
 gem 'leaflet-rails'
-gem 'pry-rails'
+
 
