@@ -46,7 +46,8 @@ class Article < ActiveRecord::Base
   end
 
   def self.search_by_location(latitude, longitude, distance)
-    Article.search("*", load: false, where: {location: {near: [latitude, longitude], within: distance}}).to_json(root: true, except:[:_id, :_index, :_type, :_score, :location])
+    articles = Article.search("*", load: false, where: {location: {near: [latitude, longitude], within: distance}})
+    articles.to_json(except:[:_id, :_index, :_type, :_score, :location])
   end
 
 end
