@@ -18,5 +18,3 @@
 //= require nprogress-turbolinks
 //= require turbolinks_transitions
 //= require_tree .
-
-
