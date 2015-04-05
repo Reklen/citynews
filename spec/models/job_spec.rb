@@ -9,13 +9,13 @@ describe Job do
 	it "is invalid without title" do
 		job = FactoryGirl.build(:job, title: nil)
 		job.valid?
-		expect(job.errors[:title]).to include("can't be blank")
+		expect(job.errors[:title]).to include("não pode ficar em branco")
 	end
 
 	it "is invalid without description" do
 		job = FactoryGirl.build(:job, description: nil)
 		job.valid?
-		expect(job.errors[:description]).to include("can't be blank")
+		expect(job.errors[:description]).to include("não pode ficar em branco")
 	end
 
 end
