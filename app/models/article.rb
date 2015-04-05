@@ -13,14 +13,13 @@ class Article < ActiveRecord::Base
       properties: {
         id: { type: 'integer' },
         title: { type: 'string' },
+        photo_url: { type: 'string' },
         author_name: { type: 'string' },
         author_picture: { type: 'string'},
-        latitude: { type: 'float' },
-        longitude: { type: 'float' },
         city: { type: 'string' },
         state: { type: 'string' },
         country: { type: 'string' },
-        photo_url: { type: 'string' }
+        location: { type: 'geo_point' }
       }
     }
   }
@@ -29,14 +28,16 @@ class Article < ActiveRecord::Base
     {
       id: id,
       title: title,
+      photo_url: picture.photo.url(:medium),
       author_name: user.name,
       author_picture: user.image,
-      latitude: location.latitude,
-      longitude: location.longitude,
       city: location.city,
       state: location.state,
       country: location.country,
-      photo_url: picture.photo.url(:medium)
+      location: {
+        lat: location.latitude,
+        lon: location.longitude
+      }
     }
   end
 
@@ -44,8 +45,8 @@ class Article < ActiveRecord::Base
     Article.reindex # or reindex_async
   end
 
-  def self.search_by_location
-    articles = Article.search('vitae', load: false).to_json(root: true, except:[:_id, :_index, :_type, :_score, :latitude, :longitude])
+  def self.search_by_location(latitude, longitude)
+    Article.search("ipsum", load: false, where: {location: {near: [latitude, longitude], within: 1000}}).to_json(root: true, except:[:_id, :_index, :_type, :_score, :location])
   end
 
 end
