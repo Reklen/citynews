@@ -62,4 +62,7 @@ gem 'turbolinks_transitions'
 
 gem 'leaflet-rails'
 
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
+
 

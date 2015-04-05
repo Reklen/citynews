@@ -45,8 +45,16 @@ class Article < ActiveRecord::Base
     Article.reindex # or reindex_async
   end
 
-  def self.search_by_location(latitude, longitude, distance)
-    Article.search("*", load: false, where: {location: {near: [latitude, longitude], within: distance}}).to_json(root: true, except:[:_id, :_index, :_type, :_score, :location])
+  def self.search_by_location(lat, lon, distance)
+    articles = Article.search('*', load: false,
+      where: {
+        location: {
+          near: [lat, lon],
+          within: distance
+        }
+      }
+    )
+    articles.to_json(except: [:_id, :_index, :_type, :_score, :location])
   end
 
 end
