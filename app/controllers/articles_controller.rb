@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy]
 
   def index
-    render json: Article.search_by_location
+    render json: Article.search_by_location(22.9068, 43.1729)
   end
 
   def show
