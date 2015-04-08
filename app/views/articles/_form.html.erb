@@ -11,6 +11,14 @@
           <%= picture_fields.file_field :photo %>
           <!--%= f.input :picture, as: :file, label: false%-->
         <% end %>
+
+        <%= f.simple_fields_for :location do |l| %>
+          <%= l.input :latitude, as: :hidden %>
+          <%= l.input :longitude, as: :hidden %>
+          <%= l.input :city, as: :hidden %>
+          <%= l.input :state, as: :hidden %>
+          <%= l.input :country, as: :hidden %>
+        <% end %>
     </li>
   </ul>
 
