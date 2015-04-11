@@ -2,9 +2,10 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_one :picture, as: :imageable, dependent: :destroy
   has_one :location, as: :locationable, dependent: :destroy
-  accepts_nested_attributes_for :picture
+  accepts_nested_attributes_for :picture, :location
 
   validates_presence_of :title, :description
+
   after_commit :reindex_article
 
   searchkick merge_mappings: true, mappings: {

@@ -10,14 +10,6 @@ feature 'Promotion Manager' do
     expect(page).to have_content("Promoções da Semana")
   end
 
-  scenario 'displays a promotion new page' do
-  	visit root_path
-
-  	first(".nav-user").click_link("Promoções")
-
-  	expect(page).to have_content("Compartilhe uma promoção")
-  end
-
   scenario 'creates a new promotion' do
     visit new_promotion_path
     promotion = FactoryGirl.build(:promotion)
@@ -42,7 +34,8 @@ feature 'Promotion Manager' do
   end
 
   scenario "deletes one promotion" do
-    promotion = user.promotions.create(title: "test", description: "test", price: 10)
+    location = FactoryGirl.build(:location)
+    promotion = user.promotions.create(title: "test", description: "test", price: 10, location: location)
 
     visit promotion_path(promotion)
     click_link "Deletar"

@@ -12,6 +12,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = current_user.articles.new
+    @article.build_location
+
     respond_to do |format|
       format.html { render layout: false }
     end
@@ -49,7 +51,10 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :description, :user_id, picture_attributes: [:photo])
+      params.require(:article)
+        .permit(:title, :description, :user_id,
+                location_attributes: [:latitude, :longitude, :city, :state, :country],
+                picture_attributes: [:photo])
     end
 
     def set_article
