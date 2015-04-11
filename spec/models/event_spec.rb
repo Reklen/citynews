@@ -12,18 +12,18 @@ describe Event do
 	it "is invalid without date" do
 		event = FactoryGirl.build(:event, date: nil)
 		event.valid?
-		expect(event.errors[:date]).to include "can't be blank"
+		expect(event.errors[:date]).to include "não pode ficar em branco"
 	end
 
 	it "is invalid without title" do
 		event = FactoryGirl.build(:event, title: nil)
 		event.valid?
-		expect(event.errors[:title]).to include "can't be blank"
+		expect(event.errors[:title]).to include "não pode ficar em branco"
 	end
 
 	it "is invalid without description" do
 		event = FactoryGirl.build(:event, description: nil)
 		event.valid?
-		expect(event.errors[:description]).to include "can't be blank"
+		expect(event.errors[:description]).to include "não pode ficar em branco"
 	end
 end

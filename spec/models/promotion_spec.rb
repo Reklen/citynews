@@ -12,19 +12,19 @@ describe Promotion do
 	it "is invalid without title" do
 		promo = FactoryGirl.build(:promotion, title: nil)
 		promo.valid?
-		expect(promo.errors[:title]).to include "can't be blank"
+		expect(promo.errors[:title]).to include "não pode ficar em branco"
 	end
 
 	it "is invalid without description" do
 		promo = FactoryGirl.build(:promotion, description: nil)
 		promo.valid?
-		expect(promo.errors[:description]).to include "can't be blank"
+		expect(promo.errors[:description]).to include "não pode ficar em branco"
 	end
 
 	it "is invalid without price" do
 		promo = FactoryGirl.build(:promotion, price: nil)
 		promo.valid?
-		expect(promo.errors[:price]).to include "can't be blank"
+		expect(promo.errors[:price]).to include "não pode ficar em branco"
 	end
 
 	it "is invalid when price is not set with number" do

@@ -3,9 +3,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy]
 
   def index
-    # @articles = Article.all.reverse
-    @articles = Article.search "*"
-    # binding.pry
+    render json: Article.search_by_location(22.9068, 43.1729, '300km')
   end
 
   def show
@@ -14,6 +12,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = current_user.articles.new
+    @article.build_location
+
     respond_to do |format|
       format.html { render layout: false }
     end
@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params)
 
     if @article.save
+      Article.reindex
       redirect_to @article
     else
       flash[:notice] = "A notícia não pode ser salva"
@@ -50,10 +51,17 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :description, :user_id, picture_attributes: [:photo])
+      params.require(:article)
+        .permit(:title, :description, :user_id,
+                location_attributes: [:latitude, :longitude, :city, :state, :country],
+                picture_attributes: [:photo])
     end
 
     def set_article
       @article = current_user.articles.find(params[:id])
+    end
+
+    def format_result(result)
+      result.response['hits']['hits'].map { |item| item }
     end
 end

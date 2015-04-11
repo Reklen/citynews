@@ -50,7 +50,12 @@ RSpec.configure do |config|
 
   # Adde warden to fake auth users
   config.include Warden::Test::Helpers
-  Warden.test_mode!
-  config.after(:each) { Warden.test_reset! }
+  config.after :each do
+    Warden.test_reset!
+  end
+
+  config.before(:each) do
+    Article.reindex
+  end
 
 end

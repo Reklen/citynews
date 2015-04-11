@@ -1,9 +1,8 @@
-<script id="Handlebars-Articles" type="text/javascript">
-  {{#each Articles}}
+<script id="artilces-template" type="text/x-handlebars-templat">
+  {{#each articles}}
     <div class="grid-25">
       <a href="{{link}}">
         <article class="short-new">
-
           <div class="img-wrapper">
             {{#if picture_url}}
               <img src="picture_url" class="img-article">
@@ -24,6 +23,3 @@
     </div>
   {{/each}}
 </script>
-
-
-
