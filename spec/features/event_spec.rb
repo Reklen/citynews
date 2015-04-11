@@ -1,61 +1,52 @@
 require "rails_helper"
 
 feature "Events management" do
-	let(:user) { FactoryGirl.create(:user) }
-	before { login_as(user, scope: :user) }
+  let(:user) { FactoryGirl.create(:user) }
+  before { login_as(user, scope: :user) }
 
-	scenario "visits the event create page" do
-		visit root_path
+  scenario "creates a new event" do
+    event = FactoryGirl.create(:event)
 
-		first(".nav-user").click_link("Eventos")
+    visit new_event_path
+    fill_in "event_title", with: event.title
+    fill_in "event_description", with: event.description
+    select '11', :from => 'event_date_3i'
+    select 'January', :from => 'event_date_2i'
+    select '2015', :from => 'event_date_1i'
 
-		expect(page).to have_content("Compartilhe um evento")
-	end
+    click_button "Enviar"
 
-	scenario "creates a new event" do
-		event = FactoryGirl.create(:event)
+    expect(page).to have_content event.title
+  end
 
-		visit new_event_path
-		fill_in "event_title", with: event.title
-		fill_in "event_description", with: event.description
-		select '11', :from => 'event_date_3i'
-		select 'January', :from => 'event_date_2i'
-		select '2015', :from => 'event_date_1i'
+  scenario "displays all current events" do
+    visit root_path
+    first(".nav-main").click_link("Eventos")
 
-		click_button "Enviar"
+    expect(page).to have_content("Eventos")
+  end
 
-		expect(page).to have_content event.title
-	end
+  scenario "updates an event" do
+    location = FactoryGirl.build(:location)
+    event = user.events.create(title: "test", description: "test", date: Time.now, location: location)
+    visit event_path(event)
 
-	scenario "displays all current events" do
-		visit root_path
-		first(".nav-main").click_link("Eventos")
+    click_link "Editar"
 
-		expect(page).to have_content("Eventos")
-	end
+    fill_in "event_title", with: "New title"
 
-	scenario "updates an event" do
-		event = user.events.create(title: "test", description: "test", date: Time.now)
-		visit event_path(event)
+    click_button "Enviar"
 
-		click_link "Editar"
+    expect(page).to have_content("Evento alterado")
+  end
 
-		fill_in "event_title", with: "New title"
+  scenario "delete an event" do
+    location = FactoryGirl.build(:location)
+    event = user.events.create(title: "test", description: "test", date: Time.now, location: location)
+    visit event_path(event)
 
-		click_button "Enviar"
+    click_link "Deletar"
 
-		expect(page).to have_content("Evento alterado")
-
-	end
-
-	scenario "delete an event" do
-		event = user.events.create(title: "test", description: "test", date: Time.now)
-		visit event_path(event)
-
-		click_link "Deletar"
-
-		expect(page).to have_content("Evento deletado")
-
-	end
-
+    expect(page).to have_content("Evento deletado")
+  end
 end

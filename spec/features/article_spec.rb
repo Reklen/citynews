@@ -4,15 +4,20 @@ feature "Article management" do
   let(:user) { FactoryGirl.create(:user) }
   before { login_as(user, scope: :user) }
 
-  scenario "creates a new article", js: true do
+  scenario "creates a new article" do
+    location = FactoryGirl.build(:location)
     article = FactoryGirl.build(:article)
 
-    visit root_path
-
-    first(".nav-user").click_link('Notícias')
+    visit new_article_path
 
     fill_in 'article_title', with: article.title
     fill_in 'article_description', with: article.description
+    find('#article_location_attributes_latitude').set(location.latitude)
+    find('#article_location_attributes_longitude').set(location.longitude)
+    find('#article_location_attributes_city').set(location.city)
+    find('#article_location_attributes_state').set(location.state)
+    find('#article_location_attributes_country').set(location.country)
+    find('#article_picture_attributes_photo').set(article.picture.photo)
 
     click_button 'Enviar'
 
@@ -21,7 +26,9 @@ feature "Article management" do
 
   scenario "update an article" do
     location = FactoryGirl.build(:location)
-    article = user.articles.create(title: "title", description: "description", location: location )
+    picture = FactoryGirl.build(:picture)
+    article = user.articles.create(title: "title", description: "description",
+                                   location: location, picture: picture )
     new_article = FactoryGirl.build(:article)
 
     visit article_path(article)
@@ -43,7 +50,9 @@ feature "Article management" do
 
   scenario "delete an article" do
     location = FactoryGirl.build(:location)
-    article = user.articles.create(title: "title", description: "description", location: location)
+    picture = FactoryGirl.build(:picture)
+    article = user.articles.create(title: "title", description: "description",
+                                   location: location, picture: picture)
 
     visit article_path(article)
 

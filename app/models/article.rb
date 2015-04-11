@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :picture, :location
 
   validates_presence_of :title, :description
+
   after_commit :reindex_article
 
   searchkick merge_mappings: true, mappings: {

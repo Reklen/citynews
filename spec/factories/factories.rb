@@ -12,9 +12,21 @@ FactoryGirl.define do
     country "Brasil"
   end
 
+  # factory :photo do
+  #   photo
+  # end
+
+  factory :picture do
+    # photo_file_name "test.jpeg"
+    # photo_content_type "image/jpeg"
+    # photo_file_size 1024
+    # photo File.new('app/assets/images/missing.png')
+  end
+
   factory :article do
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
+    picture
     location
     user
   end
@@ -23,6 +35,7 @@ FactoryGirl.define do
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
     comment_type true
+    location
     user
   end
 
@@ -30,12 +43,14 @@ FactoryGirl.define do
     date DateTime.now.to_date
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
+    location
     user
   end
 
   factory :promotion do
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
+    location
     price 100
     user
   end
