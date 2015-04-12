@@ -1,25 +1,31 @@
-<script id="artilces-template" type="text/x-handlebars-templat">
-  {{#each articles}}
-    <div class="grid-25">
-      <a href="{{link}}">
-        <article class="short-new">
-          <div class="img-wrapper">
-            {{#if picture_url}}
-              <img src="picture_url" class="img-article">
-            {{/if}}
-          </div>
+<button data-more-content>More content</button>
+<h2><%= t('page.news.title') %></h2>
 
-          <div class="mini-news">
-            <div class="author">
-              <span><img src="{{user_image}}" class="user-logo"></span>
-              <span>por: {{user_name}}</span>
+
+<script id="artilces-template" type="text/x-handlebars-template">
+  {{#each this}}
+    <div class="grid-25">
+      <a href="articles/{{id}}">
+        <div class='card'>
+          <article class="short-new">
+            <div class="img-wrapper">
+              <img src="{{photo_url}}" class="img-article">
             </div>
 
-            <h4>{{title}}</h4>
-          </div>
+            <div class="mini-news">
+              <div class="author">
+                <span><img src="{{author_picture}}" class="user-logo"></span>
+                <span>por: {{author_name}} - {{city}}</span>
+              </div>
 
-        </article>
+              <h4>{{title}}</h4>
+            </div>
+
+          </article>
+        </div>
       </a>
     </div>
   {{/each}}
 </script>
+
+
