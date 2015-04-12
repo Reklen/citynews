@@ -5,16 +5,17 @@ CityNews.App = (function() {
     this.container = $('#content');
     this.initTemplates();
     this.addEventListeners();
+
+    this.ROUTES = {
+      '#article-template': this.render(this.articlesTemplate)
+    };
+
   }
 
   var fn = App.prototype;
 
   fn.addEventListeners = function() {
-    console.log('app.addEventListeners');
-    this.btnMore = $('.leaflet-control-zoom-in');
-    this.btnMore.on('click', function(){ alert('more'); });
-    // this.container.on('click', '[data-more-content]', $.proxy(this.getArticle('articles/search'), this));
-    // this.container.on('click', '[data-more-content]', console.log("click"));
+    this.container.on('click', '[data-trigger-more-content]', $.proxy(this.getArticle, this));
   };
 
   fn.run = function() {
@@ -22,27 +23,24 @@ CityNews.App = (function() {
 
     new CityNews.ShareModal($('[data-menu-share]'));
     new CityNews.Map();
-    // this.getArticle('articles/search');
+    //this.getArticle('articles/search');
   };
-
-
 
   fn.initTemplates = function(){
-    var source = $('#artilces-template').html();
-    this.template = Handlebars.compile(source);
+    this.articlesTemplate = Handlebars.compile($('#artilces-template').html());
   };
 
-  fn.getArticle = function(path){
+  fn.render = function(template) {
+  };
+
+  fn.getArticle = function(){
     var self = this;
-    console.log("more content");
+    var path = 'articles/search';
     $.get(path, function(){
-      console.log("getMoreData");
+      console.log("getMoreData in", path);
     })
     .done(function(data){
-      console.log(data);
-      var temp = self.template(data);
-      self.container.append(temp);
-      // debugger;
+      self.container.append(self.articlesTemplate(data));
     });
   };
 
