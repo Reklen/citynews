@@ -33,7 +33,7 @@ module PopulateDB
       password: '123456haa',
       password_confirmation: '123456haa',
       name: 'Homer Simpson',
-      image: 'homer.jpeg')
+      image: '/assets/homer.jpeg')
     homer.save!
 
     marge = User.new(
@@ -41,7 +41,7 @@ module PopulateDB
       password: '123456hab',
       password_confirmation: '123456hab',
       name: 'Marge Simpson',
-      image: 'marge.jpeg')
+      image: '/assets/marge.jpeg')
     marge.save!
 
     lisa = User.new(
@@ -49,7 +49,7 @@ module PopulateDB
       password: '123456hac',
       password_confirmation: '123456hac',
       name: 'Lisa Simpson',
-      image: 'lisa.jpeg')
+      image: '/assets/lisa.jpeg')
     lisa.save!
 
     @@users = [homer, marge, lisa]
@@ -101,8 +101,6 @@ module PopulateDB
 
   def self.deleteAll
     User.destroy_all
-    Article.destroy_all
-    Event.destroy_all
   end
 end
 
