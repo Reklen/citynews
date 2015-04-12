@@ -11,8 +11,6 @@
 
       <h3>Últimas Notícias</h3>
 
-<script id="articles-template" type="text/x-handlebars-template"></script>
-
       <% @articles.each do |article| %>
         <a href="<%= article_path(article) %>">
           <div class="card">
