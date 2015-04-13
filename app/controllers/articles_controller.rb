@@ -6,7 +6,11 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    render json: Article.search_by_location(22.9068, 43.1729, '300km')
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    distance = params[:distance] + 'km'
+
+    render json: Article.search_by_location(latitude, longitude, distance)
   end
 
   def show
