@@ -7,39 +7,38 @@ CityNews.App = (function() {
     this.addEventListeners();
 
     this.ROUTES = {
-      '#article-template': this.render(this.articlesTemplate)
+      '#article-template': this.render(this.articlesTemplate, 'articles/search')
     };
-
   }
 
   var fn = App.prototype;
 
   fn.addEventListeners = function() {
-    this.container.on('click', '[data-trigger-more-content]', $.proxy(this.getArticle, this));
+    this.container.on('click', '[data-trigger-refresh]', $.proxy(this.getArticle, this));
   };
 
   fn.run = function() {
     console.info('=> Running the CityNews app');
 
     new CityNews.ShareModal($('[data-menu-share]'));
-    new CityNews.Map();
-    //this.getArticle('articles/search');
+    this.map = new CityNews.Map();
   };
 
   fn.initTemplates = function(){
     this.articlesTemplate = Handlebars.compile($('#artilces-template').html());
   };
 
-  fn.render = function(template) {
+  fn.render = function(template, path, zoom) {
+
   };
 
   fn.getArticle = function(){
-    var self = this;
-    var path = 'articles/search';
-    $.get(path, function(){
-      console.log("getMoreData in", path);
-    })
+    var self = this,
+        path = 'articles/search';
+
+    $.get(path, this.map.getMapCenter())
     .done(function(data){
+      self.container.find('[data-articles-template]').remove();
       self.container.append(self.articlesTemplate(data));
     });
   };
