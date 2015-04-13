@@ -9,16 +9,28 @@
 module PopulateDB
 
   PLACES = [{
-              country: "Brasil",
-              state: "São Paulo",
-              city: "São Paulo",
-              position: { latitude: 23.5500, longitude: 46.6333 }
+              country: "Brasil", state: "São Paulo", city: "São Paulo",
+              position: { latitude: -23.5500, longitude: -46.6333 }
             },
             {
-              country: "Brasil",
-              state: "Rio de Janeiro",
-              city: "Rio de Janeiro",
-              position: {latitude: 22.9068, longitude: 43.1729}
+              country: "Brasil", state: "São Paulo", city: "Campinas",
+              position: { latitude: -22.9008, longitude: -47.0572 }
+            },
+            {
+              country: "Brasil", state: "São Paulo", city: "Santos",
+              position: { latitude: -23.9369, longitude: -46.3250 }
+            },
+            {
+              country: "Brasil", state: "Tocantins", city: "Palmas",
+              position: { latitude: -10.1844, longitude: -48.3336 }
+            },
+            {
+              country: "Brasil", state: "Acre", city: "Rio Branco",
+              position: { latitude: -9.9747, longitude: -67.8100 }
+            },
+            {
+              country: "Brasil", state: "Rio de Janeiro", city: "Rio de Janeiro",
+              position: {latitude: -22.9068, longitude: -43.1729}
             }]
 
   def self.initialize
