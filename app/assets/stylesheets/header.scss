@@ -25,12 +25,8 @@ header {
     display: inline-block;
   }
   .main-header {
-    #map {
-
+    .left-menu {
       @include header-user-block(19%);
-      // height: 200px;
-      // border-radius: 100px;
-      height: 50px;
     }
     .logo {
       @include header-user-block(60%);
@@ -102,4 +98,13 @@ header {
       }
     }
   }
+}
+#map {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  margin: 1px black;
+  z-index: 10;
 }
