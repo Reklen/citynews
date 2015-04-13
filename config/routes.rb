@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'application#index'
 
+  get 'articles/search' => 'articles#search'
+
   resources :articles
   resources :events
   resources :promotions

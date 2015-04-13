@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-	has_many :articles
-	has_many :promotions
-	has_many :events
-	has_many :city_comments
-	has_many :jobs
+  has_many :articles, dependent: :destroy
+  has_many :promotions, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :city_comments, dependent: :destroy
+  has_many :jobs, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,14 +11,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-
   def self.from_omniauth(auth)
-	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-	    user.email = auth.info.email
-	    user.password = Devise.friendly_token[0,20]
-	    user.name = auth.info.name   # assuming the user model has a name
-	    user.image = auth.info.image # assuming the user model has an image
-	  end
-	end
-
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name   # assuming the user model has a name
+      user.image = auth.info.image # assuming the user model has an image
+    end
+  end
 end

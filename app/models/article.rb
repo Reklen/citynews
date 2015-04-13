@@ -6,7 +6,8 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :title, :description
 
-  after_commit :reindex_article
+  # after_save :reindex_article
+  # after_destroy :reindex_article
 
   searchkick merge_mappings: true, mappings: {
     article: {

@@ -1,9 +1,16 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_article, only: [:edit, :update, :destroy]
 
   def index
-    render json: Article.search_by_location(22.9068, 43.1729, '300km')
+  end
+
+  def search
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    distance = params[:distance] + 'km'
+
+    render json: Article.search_by_location(latitude, longitude, distance)
   end
 
   def show

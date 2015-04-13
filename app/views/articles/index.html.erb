@@ -1,26 +1,33 @@
+<button data-trigger-refresh>refresh</button>
 <h2><%= t('page.news.title') %></h2>
 
-<% @articles.each do |article| %>
-  <div class='grid-25'>
-    <a href="<%= article_path(article) %>">
 
-      <div class="card">
-        <article class="short-new">
+<script id="artilces-template" type="text/x-handlebars-template">
+  <div data-articles-template>
+    {{#each this}}
+      <div class="grid-25">
+        <a href="articles/{{id}}">
+          <div class='card'>
+            <article class="short-new">
+              <div class="img-wrapper">
+                <img src="{{photo_url}}" class="img-article">
+              </div>
 
-          <div class="img-wrapper">
-            <% if article.picture %>
-              <%= image_tag(article.picture.photo.url(:medium), class: "img-article") %>
-            <% end %>
+              <div class="mini-news">
+                <div class="author">
+                  <span><img src="{{author_picture}}" class="user-logo"></span>
+                  <span>por: {{author_name}} - {{city}}</span>
+                </div>
+
+                <h4>{{title}}</h4>
+              </div>
+
+            </article>
           </div>
-
-          <div class="mini-news">
-            <%= render partial: 'layouts/author', locals: { article: article } %>
-
-            <h4><%= article.title %></h4>
-          </div>
-
-        </article>
+        </a>
       </div>
-    </a>
+    {{/each}}
   </div>
-<% end %>
+</script>
+
+

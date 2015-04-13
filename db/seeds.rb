@@ -9,16 +9,28 @@
 module PopulateDB
 
   PLACES = [{
-              country: "Brasil",
-              state: "São Paulo",
-              city: "São Paulo",
-              position: { latitude: 23.5500, longitude: 46.6333 }
+              country: "Brasil", state: "São Paulo", city: "São Paulo",
+              position: { latitude: -23.5500, longitude: -46.6333 }
             },
             {
-              country: "Brasil",
-              state: "Rio de Janeiro",
-              city: "Rio de Janeiro",
-              position: {latitude: 22.9068, longitude: 43.1729}
+              country: "Brasil", state: "São Paulo", city: "Campinas",
+              position: { latitude: -22.9008, longitude: -47.0572 }
+            },
+            {
+              country: "Brasil", state: "São Paulo", city: "Santos",
+              position: { latitude: -23.9369, longitude: -46.3250 }
+            },
+            {
+              country: "Brasil", state: "Tocantins", city: "Palmas",
+              position: { latitude: -10.1844, longitude: -48.3336 }
+            },
+            {
+              country: "Brasil", state: "Acre", city: "Rio Branco",
+              position: { latitude: -9.9747, longitude: -67.8100 }
+            },
+            {
+              country: "Brasil", state: "Rio de Janeiro", city: "Rio de Janeiro",
+              position: {latitude: -22.9068, longitude: -43.1729}
             }]
 
   def self.initialize
@@ -33,7 +45,7 @@ module PopulateDB
       password: '123456haa',
       password_confirmation: '123456haa',
       name: 'Homer Simpson',
-      image: 'homer.jpeg')
+      image: '/assets/homer.jpeg')
     homer.save!
 
     marge = User.new(
@@ -41,7 +53,7 @@ module PopulateDB
       password: '123456hab',
       password_confirmation: '123456hab',
       name: 'Marge Simpson',
-      image: 'marge.jpeg')
+      image: '/assets/marge.jpeg')
     marge.save!
 
     lisa = User.new(
@@ -49,7 +61,7 @@ module PopulateDB
       password: '123456hac',
       password_confirmation: '123456hac',
       name: 'Lisa Simpson',
-      image: 'lisa.jpeg')
+      image: '/assets/lisa.jpeg')
     lisa.save!
 
     @@users = [homer, marge, lisa]
@@ -101,8 +113,6 @@ module PopulateDB
 
   def self.deleteAll
     User.destroy_all
-    Article.destroy_all
-    Event.destroy_all
   end
 end
 
