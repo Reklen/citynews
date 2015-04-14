@@ -21,7 +21,7 @@ CityNews.App = (function() {
     console.info('=> Running the CityNews app');
 
     new CityNews.ShareModal($('[data-menu-share]'));
-    this.map = new CityNews.Map();
+    this.map = new CityNews.Map(this);
   };
 
   fn.initTemplates = function(){
