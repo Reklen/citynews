@@ -32,11 +32,11 @@ CityNews.App = (function() {
 
   };
 
-  fn.getArticle = function(){
+  fn.getArticle = function(mapCenter){
     var self = this,
         path = 'articles/search';
 
-    $.get(path, this.map.getMapCenter())
+    $.get(path, mapCenter)
     .done(function(data){
       self.container.find('[data-articles-template]').remove();
       self.container.append(self.articlesTemplate(data));
