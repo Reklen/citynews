@@ -1,13 +1,13 @@
 CityNews.Map = (function() {
   // The zoom goes from 0 to 12. 12 is the closest.
   var MAX_ZOOM = 12;
-  var POSITION = { coords: {latitude: 0, longitude: 0}};
+  var COORDS = {latitude: 0, longitude: 0};
 
   function Map(app){
     this.app = app;
     this.titleLayerStr = 'http://{s}.tiles.mapbox.com/v4/rafaelrochasilva.li0cpini/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicmFmYWVscm9jaGFzaWx2YSIsImEiOiJhYWw3VzdFIn0.1fvXksiFzqKFHayxNJxjww';
     this.getUserPosition();
-    this.initializeMap();
+    this.initMap();
     this.addEventListeners();
   }
 
@@ -16,10 +16,16 @@ CityNews.Map = (function() {
   fn.addEventListeners = function() {
     var self = this;
     this.map.on('zoomstart', function(){
-      self.mapIsLoaded();
+      console.log('zoomstart');
+      self.render();
     });
     this.map.on('dragend', function() {
-      self.mapIsLoaded();
+      console.log('dragend');
+      self.render();
+    });
+    this.map.on('load', function() {
+      console.log('dragend');
+      self.render();
     });
   };
 
@@ -29,10 +35,10 @@ CityNews.Map = (function() {
       zoomControl: false
     });
 
-    this.initializeLayer();
-    this.initializeControl();
+    this.initLayer();
+    this.initControl();
 
-    this.render(POSITION, 1);
+    this.map.setView([COORDS.latitude, COORDS.longitude], 1);
   };
 
   fn.initLayer = function() {
@@ -49,12 +55,12 @@ CityNews.Map = (function() {
   fn.getUserPosition = function() {
     var self = this;
     navigator.geolocation.getCurrentPosition(function(position) {
-      self.render(position, 10);
+      self.map.setView([position.coords.latitude, position.coords.longitude], 10);
     });
   };
 
-  fn.render = function(position, zoom) {
-    this.map.setView([position.coords.latitude, position.coords.longitude], zoom);
+  fn.render = function() {
+    console.log("map loaded");
     this.app.renderArticle(this.getMapCenter());
   };
 
