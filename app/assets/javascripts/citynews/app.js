@@ -32,7 +32,7 @@ CityNews.App = (function() {
 
   };
 
-  fn.getArticle = function(mapCenter){
+  fn.renderArticle = function(mapCenter){
     var self = this,
         path = 'articles/search';
 

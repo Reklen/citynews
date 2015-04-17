@@ -16,16 +16,14 @@ CityNews.Map = (function() {
   fn.addEventListeners = function() {
     var self = this;
     this.map.on('zoomstart', function(){
-      console.log('zoomstart');
-      self.mapLoaded();
+      self.mapIsLoaded();
     });
     this.map.on('dragend', function() {
-      console.log('dragend');
-      self.mapLoaded();
+      self.mapIsLoaded();
     });
   };
 
-  fn.initializeMap = function() {
+  fn.initMap = function() {
     this.map = L.map('map', {
       attributionControl: false,
       zoomControl: false
@@ -34,33 +32,30 @@ CityNews.Map = (function() {
     this.initializeLayer();
     this.initializeControl();
 
-    this.loadRegion(POSITION);
+    this.render(POSITION, 1);
   };
 
-  fn.loadRegion = function(position) {
-    this.map.setView([position.coords.latitude, position.coords.longitude], 1);
-    this.mapLoaded();
-  };
-
-  fn.initializeLayer = function() {
+  fn.initLayer = function() {
     L.tileLayer(this.titleLayerStr, {
       maxZoom: MAX_ZOOM,
     }).addTo(this.map);
   };
 
-  fn.initializeControl = function() {
+  fn.initControl = function() {
     L.control.scale().addTo(this.map);
     L.control.zoom({position: 'topright'}).addTo(this.map);
   };
 
   fn.getUserPosition = function() {
-    navigator.geolocation.getCurrentPosition($.proxy(this.loadRegion, this));
+    var self = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      self.render(position, 10);
+    });
   };
 
-  fn.mapLoaded = function() {
-    console.log("map loaded");
-    var mapCenter = this.getMapCenter();
-    this.app.getArticle(mapCenter);
+  fn.render = function(position, zoom) {
+    this.map.setView([position.coords.latitude, position.coords.longitude], zoom);
+    this.app.renderArticle(this.getMapCenter());
   };
 
   fn.getMapCenter = function() {
@@ -75,7 +70,6 @@ CityNews.Map = (function() {
   fn.getRadius = function(center) {
     var northEast = this.map.getBounds()._northEast;
         radius = Math.round(center.distanceTo(northEast) / 1000);
-
     return radius;
   };
 
