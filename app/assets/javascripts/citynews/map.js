@@ -1,7 +1,6 @@
 CityNews.Map = (function() {
   // The zoom goes from 0 to 12. 12 is the closest.
   var MAX_ZOOM = 12;
-  var COORDS = {latitude: 0, longitude: 0};
 
   function Map(app){
     this.app = app;
@@ -32,13 +31,13 @@ CityNews.Map = (function() {
   fn.initMap = function() {
     this.map = L.map('map', {
       attributionControl: false,
-      zoomControl: false
+      zoomControl: false,
+      center: [0, 0],
+      zoom: 1
     });
 
     this.initLayer();
     this.initControl();
-
-    this.map.setView([COORDS.latitude, COORDS.longitude], 1);
   };
 
   fn.initLayer = function() {
