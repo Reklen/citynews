@@ -5,6 +5,7 @@ CityNews.Map = (function() {
   function Map(app){
     this.app = app;
     this.titleLayerStr = 'http://{s}.tiles.mapbox.com/v4/rafaelrochasilva.li0cpini/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicmFmYWVscm9jaGFzaWx2YSIsImEiOiJhYWw3VzdFIn0.1fvXksiFzqKFHayxNJxjww';
+
     this.getUserPosition();
     this.initMap();
     this.addEventListeners();
@@ -14,18 +15,9 @@ CityNews.Map = (function() {
 
   fn.addEventListeners = function() {
     var self = this;
-    this.map.on('zoomstart', function(){
-      console.log('zoomstart');
-      self.render();
-    });
-    this.map.on('dragend', function() {
-      console.log('dragend');
-      self.render();
-    });
-    this.map.on('load', function() {
-      console.log('dragend');
-      self.render();
-    });
+    this.map.on('zoomstart', $.proxy(self.render, self));
+    this.map.on('dragend', $.proxy(self.render, self));
+    this.tileLayer.on('load', $.proxy(self.render, self));
   };
 
   fn.initMap = function() {
@@ -36,12 +28,12 @@ CityNews.Map = (function() {
       zoom: 1
     });
 
-    this.initLayer();
+    this.initTileLayer();
     this.initControl();
   };
 
-  fn.initLayer = function() {
-    L.tileLayer(this.titleLayerStr, {
+  fn.initTileLayer = function() {
+    this.tileLayer = L.tileLayer(this.titleLayerStr, {
       maxZoom: MAX_ZOOM,
     }).addTo(this.map);
   };
@@ -59,7 +51,6 @@ CityNews.Map = (function() {
   };
 
   fn.render = function() {
-    console.log("map loaded");
     this.app.renderArticle(this.getMapCenter());
   };
 
