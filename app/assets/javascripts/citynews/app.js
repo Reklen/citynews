@@ -21,7 +21,7 @@ CityNews.App = (function() {
     console.info('=> Running the CityNews app');
 
     new CityNews.ShareModal($('[data-menu-share]'));
-    this.map = new CityNews.Map();
+    this.map = new CityNews.Map(this);
   };
 
   fn.initTemplates = function(){
@@ -32,11 +32,11 @@ CityNews.App = (function() {
 
   };
 
-  fn.getArticle = function(){
+  fn.renderArticle = function(mapCenter){
     var self = this,
         path = 'articles/search';
 
-    $.get(path, this.map.getMapCenter())
+    $.get(path, mapCenter)
     .done(function(data){
       self.container.find('[data-articles-template]').remove();
       self.container.append(self.articlesTemplate(data));
