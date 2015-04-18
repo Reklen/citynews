@@ -14,10 +14,9 @@ CityNews.Map = (function() {
   var fn = Map.prototype;
 
   fn.addEventListeners = function() {
-    var self = this;
-    this.map.on('zoomstart', $.proxy(self.render, self));
-    this.map.on('dragend', $.proxy(self.render, self));
-    this.tileLayer.on('load', $.proxy(self.render, self));
+    this.map.on('zoomstart', $.proxy(this.app.getArticles, this.app));
+    this.map.on('dragend', $.proxy(this.app.getArticles, this.app));
+    this.tileLayer.on('load', $.proxy(this.app.getArticles, this.app));
   };
 
   fn.initMap = function() {
@@ -50,10 +49,6 @@ CityNews.Map = (function() {
     });
   };
 
-  fn.render = function() {
-    this.app.renderArticle(this.getMapCenter());
-  };
-
   fn.getMapCenter = function() {
     var center = this.map.getCenter();
     return {
@@ -67,6 +62,18 @@ CityNews.Map = (function() {
     var northEast = this.map.getBounds()._northEast;
         radius = Math.round(center.distanceTo(northEast) / 1000);
     return radius;
+  };
+
+  fn.renderPoints = function(data) {
+    var self = this,
+        cities = [];
+
+    $.each(data, function(index, value) {
+      if($.inArray(value.city, cities) == -1) {
+        cities.push(value.city);
+        L.marker([value.location.lat, value.location.lon]).addTo(self.map);
+      }
+    });
   };
 
   return Map;
