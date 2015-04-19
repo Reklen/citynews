@@ -21,7 +21,8 @@ class Article < ActiveRecord::Base
         city: { type: 'string' },
         state: { type: 'string' },
         country: { type: 'string' },
-        location: { type: 'geo_point' }
+        location: { type: 'geo_point' },
+        date: { type: 'date' }
       }
     }
   }
@@ -39,7 +40,8 @@ class Article < ActiveRecord::Base
       location: {
         lat: location.latitude,
         lon: location.longitude
-      }
+      },
+      date: updated_at
     }
   end
 
@@ -53,6 +55,11 @@ class Article < ActiveRecord::Base
         location: {
           near: [lat, lon],
           within: distance
+        }
+      },
+      sort: {
+        created_at: {
+          order: 'desc'
         }
       }
     )
