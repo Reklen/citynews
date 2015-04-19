@@ -1,5 +1,5 @@
-CityNews.ArticlesDispatcher = (function() {
-  function ArticlesDispatcher() {
+CityNews.ContentDispatcher = (function() {
+  function ContentDispatcher() {
     this.cityMap = new CityNews.Map(this);
     this.path = 'articles/search';//remove in the future
 
@@ -7,20 +7,20 @@ CityNews.ArticlesDispatcher = (function() {
     this.initTemplates();//remove in the future
   }
 
-  var fn = ArticlesDispatcher.prototype;
+  var fn = ContentDispatcher.prototype;
 
   // Remove in the future
   fn.initTemplates = function(){
     this.template = Handlebars.compile($('#artilces-template').html());
   };
 
-  fn.setTemplate = function(template, path) {
+  fn.run = function(template, path) {
     this.template = template;
     this.path = path;
-    this.getArticles();
+    this.getContent();
   };
 
-  fn.getArticles = function() {
+  fn.getContent = function() {
     var cityMapCenter = this.cityMap.getMapCenter();
         cityMapCenter_str = JSON.stringify(cityMapCenter);
 
@@ -28,25 +28,25 @@ CityNews.ArticlesDispatcher = (function() {
       this.mapCenter = cityMapCenter_str;
 
       $.get(this.path, cityMapCenter)
-      .done($.proxy(this.renderArticles, this, cityMapCenter.distance.toString()));
+      .done($.proxy(this.renderContainer, this, cityMapCenter.distance.toString()));
     }
   };
 
-  fn.renderArticles = function(distance, data) {
-    this.removeOldArticles();
-    this.appendNewArticles(distance, data);
+  fn.renderContainer = function(distance, data) {
+    this.removeContainer();
+    this.appendContainer(distance, data);
 
     this.cityMap.renderPoints(data);
   };
 
-  fn.removeOldArticles = function() {
-    this.$container.find('[data-articles-template]').remove();
+  fn.removeContainer= function() {
+    this.$container.find('[data-contentDispatcher-container]').remove();
   };
 
-  fn.appendNewArticles = function(distance, data) {
+  fn.appendContainer = function(distance, data) {
     this.$container.append(this.template(data));
     this.$container.find('[data-title]').text(distance+' km');
   };
 
-  return ArticlesDispatcher;
+  return ContentDispatcher;
 })();

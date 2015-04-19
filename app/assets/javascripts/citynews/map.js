@@ -14,9 +14,9 @@ CityNews.Map = (function() {
   var fn = Map.prototype;
 
   fn.addEventListeners = function() {
-    this.map.on('zoomstart', $.proxy(this.app.getArticles, this.app));
-    this.map.on('dragend', $.proxy(this.app.getArticles, this.app));
-    this.tileLayer.on('load', $.proxy(this.app.getArticles, this.app));
+    this.map.on('zoomstart', $.proxy(this.app.getContent, this.app));
+    this.map.on('dragend', $.proxy(this.app.getContent, this.app));
+    this.tileLayer.on('load', $.proxy(this.app.getContent, this.app));
   };
 
   fn.initMap = function() {

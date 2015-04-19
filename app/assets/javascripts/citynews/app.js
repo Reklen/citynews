@@ -4,7 +4,7 @@ CityNews.App = (function() {
   function App() {
     // this.initTemplates();
     this.ROUTES = {
-      // '#article-template': this.render(this.articlesTemplate, 'articles/search')
+      // '#article-template': this.contentDispatcher.setTemplate(template, path);
     };
   }
 
@@ -16,13 +16,9 @@ CityNews.App = (function() {
 
   fn.run = function() {
     console.info('=> Running the CityNews app');
-    this.articlesDispatcher = new CityNews.ArticlesDispatcher(this.cityMap);
+    this.contentDispatcher = new CityNews.ContentDispatcher(this.cityMap);
 
     new CityNews.ShareModal($('[data-menu-share]'));
-  };
-
-  fn.render = function(template, path) {
-    this.articlesDispatcher.setTemplate(template, path);
   };
 
   return App;
