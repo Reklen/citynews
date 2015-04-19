@@ -59,7 +59,7 @@ CityNews.Map = (function() {
   };
 
   fn.getRadius = function(center) {
-    var northEast = this.map.getBounds()._northEast;
+    var northEast = this.map.getBounds()._northEast,
         radius = Math.round(center.distanceTo(northEast) / 1000);
     return radius;
   };
