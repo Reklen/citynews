@@ -21,7 +21,7 @@ CityNews.App = (function() {
     console.info('=> Running the CityNews app');
 
     new CityNews.ShareModal($('[data-menu-share]'));
-    this.map = new CityNews.Map(this);
+    this.cityMap = new CityNews.Map(this);
   };
 
   fn.initTemplates = function(){
@@ -29,18 +29,25 @@ CityNews.App = (function() {
   };
 
   fn.render = function(template, path, zoom) {
-
   };
 
-  fn.renderArticle = function(mapCenter){
-    var self = this,
-        path = 'articles/search';
+  fn.getArticles = function() {
+    var path = 'articles/search',
+        currentMapCenter = this.cityMap.getMapCenter();
+        currentMapCenter_str = JSON.stringify(currentMapCenter);
 
-    $.get(path, mapCenter)
-    .done(function(data){
-      self.container.find('[data-articles-template]').remove();
-      self.container.append(self.articlesTemplate(data));
-    });
+    if(this.mapCenter != currentMapCenter_str) {
+      this.mapCenter = currentMapCenter_str;
+
+      $.get(path, currentMapCenter)
+      .done($.proxy(this.renderArticles, this));
+    }
+  };
+
+  fn.renderArticles = function(data) {
+    this.container.find('[data-articles-template]').remove();
+    this.container.append(this.articlesTemplate(data));
+    this.cityMap.renderPoints(data);
   };
 
   return App;
