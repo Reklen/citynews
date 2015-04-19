@@ -1,6 +1,7 @@
 CityNews.ArticlesDispatcher = (function() {
   function ArticlesDispatcher() {
     this.cityMap = new CityNews.Map(this);
+    this.path = 'articles/search';//remove in the future
 
     this.$container = $('#content');
     this.initTemplates();//remove in the future
@@ -10,24 +11,24 @@ CityNews.ArticlesDispatcher = (function() {
 
   // Remove in the future
   fn.initTemplates = function(){
-    this.articlesTemplate = Handlebars.compile($('#artilces-template').html());
+    this.template = Handlebars.compile($('#artilces-template').html());
   };
 
   fn.setTemplate = function(template, path) {
     this.template = template;
     this.path = path;
+    this.getArticles();
   };
 
   fn.getArticles = function() {
-    var path = 'articles/search',
-        currentMapCenter = this.cityMap.getMapCenter();
-        currentMapCenter_str = JSON.stringify(currentMapCenter);
+    var cityMapCenter = this.cityMap.getMapCenter();
+        cityMapCenter_str = JSON.stringify(cityMapCenter);
 
-    if(this.mapCenter != currentMapCenter_str) {
-      this.mapCenter = currentMapCenter_str;
+    if(this.mapCenter != cityMapCenter_str) {
+      this.mapCenter = cityMapCenter_str;
 
-      $.get(path, currentMapCenter)
-      .done($.proxy(this.renderArticles, this, currentMapCenter.distance.toString()));
+      $.get(this.path, cityMapCenter)
+      .done($.proxy(this.renderArticles, this, cityMapCenter.distance.toString()));
     }
   };
 
@@ -44,7 +45,7 @@ CityNews.ArticlesDispatcher = (function() {
 
   fn.appendNewArticles = function(distance, data) {
     this.$container.find('[data-title]').text(distance+' km');
-    this.$container.append(this.articlesTemplate(data));
+    this.$container.append(this.template(data));
   };
 
   return ArticlesDispatcher;
