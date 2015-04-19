@@ -44,8 +44,8 @@ CityNews.ArticlesDispatcher = (function() {
   };
 
   fn.appendNewArticles = function(distance, data) {
-    this.$container.find('[data-title]').text(distance+' km');
     this.$container.append(this.template(data));
+    this.$container.find('[data-title]').text(distance+' km');
   };
 
   return ArticlesDispatcher;
