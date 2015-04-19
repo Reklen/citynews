@@ -15,8 +15,9 @@ pt-BR:
     exit: Sair
     login: Logar com Facebook
   page:
+    no_content: Não existe conteúdo para essa região, navegue no maca com o botão Zoom [-], para encontrar mais notícias.
     news:
-      title: Notícias
+      title: 'Notícias em um raio de '
       form_new_title: Compartilhe uma notícia
       form_edit_title: Edite a notícia
     events:

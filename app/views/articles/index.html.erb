@@ -1,31 +1,32 @@
-<h2><%= t('page.news.title') %></h2>
-
 <script id="artilces-template" type="text/x-handlebars-template">
-  <div data-articles-template>
-    {{#each this}}
-      <div class="grid-25">
-        <a href="articles/{{id}}">
-          <div class='card'>
-            <article class="short-new">
-              <div class="img-wrapper">
-                <img src="{{photo_url}}" class="img-article">
-              </div>
-
-              <div class="mini-news">
-                <div class="author">
-                  <span><img src="{{author_picture}}" class="user-logo"></span>
-                  <span>por: {{author_name}} - {{city}} - {{country}}</span>
+  <div data-contentDispatcher-container>
+    <h2><%= t('page.news.title') %><span data-title></span></h2>
+    {{#if this}}
+      {{#each this}}
+        <div class="grid-25">
+          <a href="articles/{{id}}">
+            <div class='card'>
+              <article class="short-new">
+                <div class="img-wrapper">
+                  <img src="{{photo_url}}" class="img-article">
                 </div>
 
-                <h4>{{title}}</h4>
-              </div>
+                <div class="mini-news">
+                  <div class="author">
+                    <span><img src="{{author_picture}}" class="user-logo"></span>
+                    <span>por: {{author_name}} - {{city}} - {{prettifyDate date}}</span>
+                  </div>
 
-            </article>
-          </div>
-        </a>
-      </div>
-    {{/each}}
+                  <h4>{{title}}</h4>
+                </div>
+
+              </article>
+            </div>
+          </a>
+        </div>
+      {{/each}}
+    {{else}}
+      <%= t('page.no_content') %>
+    {{/if}}
   </div>
 </script>
-
-
