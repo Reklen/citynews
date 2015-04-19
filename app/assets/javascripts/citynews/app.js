@@ -21,7 +21,7 @@ CityNews.App = (function() {
     new CityNews.ShareModal($('[data-menu-share]'));
   };
 
-  fn.loadPage = function(template, path) {
+  fn.render = function(template, path) {
     this.articlesDispatcher.setTemplate(template, path);
   };
 
