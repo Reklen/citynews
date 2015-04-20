@@ -23,16 +23,30 @@ describe Article do
   end
 
 
-  # describe "#search_by_location" do
-  #   it "returns articles related to one city" do
-  #     article_1 = Article.create(title: "title", description: "desc")
-  #     article_2 = FactoryGirl.build(:article_2)
+  describe "#search_by_location" do
+    it "returns articles near to one point" do
+      article_1 = FactoryGirl.create(:article)
+      article_1.reindex
+      Article.searchkick_index.refresh
 
-  #     articles_created = art
+      article_json = {
+        'id' => 1,
+        'city' => 'São Paulo',
+        'state' => 'São Paulo',
+        'country' => 'Brasil'
+      }
 
-  #     articles = Article.search_by_location(20, 20, "100km")
+      article = Article.search_by_location(22.02, 22.02, "100km").first
+      expect(article).to include article_json
+    end
 
-  #     expect(articles).to be_equal(articles_created)
-  #   end
-  # end
+    it "doesn't returns any article near to a point" do
+            article_1 = FactoryGirl.create(:article)
+      article_1.reindex
+      Article.searchkick_index.refresh
+
+      article = Article.search_by_location(20.02, 20.02, "100km").first
+      expect(article).to be_nil
+    end
+  end
 end

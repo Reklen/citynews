@@ -63,7 +63,6 @@ class Article < ActiveRecord::Base
         }
       }
     )
-    articles.to_json(except: [:_id, :_index, :_type, :_score])
+    articles.as_json(except: [:_id, :_index, :_type, :_score])
   end
-
 end
