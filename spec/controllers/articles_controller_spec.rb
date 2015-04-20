@@ -31,5 +31,18 @@ describe ArticlesController do
 
       expect(parsed_response).to include expected_response
     end
+
+    it "returns a nil object, when not found" do
+      article = FactoryGirl.create(:article)
+      article.reindex
+      Article.searchkick_index.refresh
+
+      get :search, latitude: '2', longitude: '2', distance: '1000',
+          format: :json
+
+      parsed_response = JSON.parse(response.body).first
+
+      expect(parsed_response).to be_nil
+    end
   end
 end

@@ -22,11 +22,10 @@ describe Article do
     expect(article.errors[:description]).to include("não pode ficar em branco")
   end
 
-
   describe "#search_by_location" do
     it "returns articles near to one point" do
-      article_1 = FactoryGirl.create(:article)
-      article_1.reindex
+      article = FactoryGirl.create(:article)
+      article.reindex
       Article.searchkick_index.refresh
 
       article_json = {
@@ -41,8 +40,8 @@ describe Article do
     end
 
     it "doesn't returns any article near to a point" do
-            article_1 = FactoryGirl.create(:article)
-      article_1.reindex
+      article = FactoryGirl.create(:article)
+      article.reindex
       Article.searchkick_index.refresh
 
       article = Article.search_by_location(20.02, 20.02, "100km").first
