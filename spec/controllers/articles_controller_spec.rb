@@ -4,104 +4,32 @@ describe ArticlesController do
   let(:user) { FactoryGirl.create(:user) }
   before { login_as(user, scope: :user) }
 
-  describe 'GET #index' do
-    it 'renders the :index template' do
-      get :index
-      expect(response.content_type).to eq "application/json"
-    end
-  end
+  describe 'GET #search' do
+    it 'responds with a json file' do
+      get :search, latitude: '22.01', longitude: '22.01', distance: '100',
+          format: :json
 
-  describe 'GET #show' do
-    it 'assigns the requested article to @article' do
+      expect(response).to be_success
+    end
+
+    it 'searchs and responds with a json' do
       article = FactoryGirl.create(:article)
-      get :show, id: article
-      expect(assigns(:article)).to eq article
-    end
+      article.reindex
+      Article.searchkick_index.refresh
 
-    it 'renders the :show template' do
-      article = FactoryGirl.create(:article)
-      get :show, id: article
-      expect(response).to render_template :show
-    end
-  end
+      get :search, latitude: '22.01', longitude: '22.01', distance: '1000',
+          format: :json
 
-  describe 'GET #new' do
-    xit "assigns a new Article to @article" do
-      location = FactoryGirl.create(:location)
-      article = user.articles.create(title: "My Article", description: "test description", location: location)
+      expected_response = {
+        'id' => 1,
+        'city' => 'São Paulo',
+        'state' => 'São Paulo',
+        'country' => 'Brasil'
+      }
 
-      get :new
-      expect(assigns(:article)).to be_a_new(Article)
-    end
+      parsed_response = JSON.parse(response.body).first
 
-    xit "renders the :new template" do
-      article = user.articles.new
-
-      get :new
-      expect(response).to render_template :new
-    end
-  end
-
-  describe 'GET #edit' do
-    xit "assigns the request article to @article" do
-      location = FactoryGirl.create(:location)
-      article = user.articles.create(title: "Title test", description: "test", location: location)
-
-      get :edit, id: article
-
-      expect(assigns(:article)).to eq article
-    end
-
-    xit "renders the :edit template" do
-      location = FactoryGirl.create(:location)
-      article = user.articles.create(title: "Title test", description: "test", location: location)
-
-      get :edit, id: article
-
-      expect(response).to render_template :edit
-    end
-  end
-
-  describe 'POST #create' do
-    context "with valid attributes" do
-      xit "saves the new article in the database" do
-        expect{
-          # creating a hash containing a contact’s attributes and passing them to the controller.
-          post :create,
-                article: FactoryGirl.build(:article).attributes
-        }.to change(Article, :count).by 1
-      end
-
-      xit "redirects to articles#show" do
-        post :create,
-             article: FactoryGirl.build(:article).attributes
-        expect(response).to redirect_to article_path(assigns[:article])
-      end
-    end
-
-    context "with invalid attributes" do
-      xit "does not save the article in the database" do
-        expect{
-          post :create,
-            article: FactoryGirl.build(:article, title: nil).attributes
-        }.to_not change(Article, :count)
-      end
-
-      xit "re-renders the :new template" do
-        post :create, article: FactoryGirl.build(:article, title: nil).attributes
-        expect(response).to render_template :new
-      end
-    end
-  end
-
-  describe 'PATCH #update' do
-    before :each do
-      @article = FactoryGirl.create(:article)
-    end
-    context "valid attributes" do
-      xit "locates the requested @article" do
-        patch :update, id: @article
-      end
+      expect(parsed_response).to include expected_response
     end
   end
 end
