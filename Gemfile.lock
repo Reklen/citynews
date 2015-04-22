@@ -98,7 +98,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.2.0)
-    leaflet-rails (0.7.4)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -246,7 +245,6 @@ DEPENDENCIES
   handlebars_assets
   jbuilder (~> 2.0)
   jquery-rails
-  leaflet-rails
   omniauth-facebook
   paperclip (~> 4.2)
   pry-rails
