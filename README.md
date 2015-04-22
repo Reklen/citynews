@@ -1,7 +1,16 @@
 **CityNews** is a webapp made to share news and events all arround the world. By just selecting an area in the map by dragging or zooming, you can view news from diferent cities, neighborhood, countries and continents.
 
 ##To run this project you need to.
-Install Elastic Search
+Install bower globally
+```console
+npm install bower -g
+```
+Run
+```
+bower install
+```
+
+Install Elasticsearch
 ```console
 brew install elasticsearch
 ```
