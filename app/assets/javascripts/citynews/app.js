@@ -2,12 +2,14 @@ CityNews.App = (function() {
   'use-strict';
 
   function App() {
+    // var currentPath = window.location.pathname;
+    var currentPath = 'articles';
+
     this.$mainMenu = $('[data-main-menu]');
-    new CityNews.ShareModal($('[data-menu-share]'));
-
     this.templates = this.initTemplates();
+    this.contentDispatcher = new CityNews.ContentDispatcher(currentPath, this.templates[currentPath]);
 
-    this.contentDispatcher = new CityNews.ContentDispatcher('articles', this.templates['articles']);
+    new CityNews.ShareModal($('[data-menu-share]'));
     this.addEventListeners();
   }
 
@@ -19,17 +21,28 @@ CityNews.App = (function() {
 
   fn.initTemplates = function() {
     return {
-      'articles': Handlebars.compile($('#artilces-template').html())
+      '/': Handlebars.compile($('#artilces-template').html()),
+      'articles': Handlebars.compile($('#artilces-template').html()),
+      'events': Handlebars.compile($('#artilces-template').html()),
+      'promotions': Handlebars.compile($('#artilces-template').html()),
+      'jobs': Handlebars.compile($('#artilces-template').html()),
+      'talk_with_city_hall': Handlebars.compile($('#artilces-template').html())
     };
   };
 
   fn.displayRouteContent = function(e) {
+    e.preventDefault();
     var link = $(e.currentTarget),
         path = link.data('menu-route');
 
-    console.log("CityNews is running the route: ", path);
-    //add in the header a new route
-    // this.contentDispatcher.run(path, this.templates[path]);
+    this.setNewRoute(path, link);
+    this.contentDispatcher.run(path, this.templates[path]);
+  };
+
+  fn.setNewRoute = function(path, link) {
+    window.history.pushState(path, "Title", path);
+    this.$mainMenu.find('a').css('text-decoration', 'none');
+    link.css('text-decoration', 'underline');
   };
 
   return App;
