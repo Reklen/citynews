@@ -6,4 +6,7 @@ describe('CityNews.App', function() {
     app = new CityNews.App();
   });
 
+  it('returns a instance of App', function() {
+    expect(app).toBeDefined();
+  });
 });
