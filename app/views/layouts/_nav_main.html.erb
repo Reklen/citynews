@@ -1,10 +1,10 @@
-<nav class="nav-main">
+<nav class='nav-main' data-main-menu>
   <ul>
-    <li><%= link_to t('header.home'), root_path %></li>
-    <li><%= link_to t('header.news'), articles_path %></li>
-    <li><%= link_to t('header.events'), events_path %></li>
-    <li><%= link_to t('header.promotions'), promotions_path %></li>
-    <li><%= link_to t('header.jobs'), jobs_path %></li>
-    <li><%= link_to t('header.city_hall'), city_comments_path %></li>
+    <li><a href='#' data-menu-route='/'><%= t('header.home') %></a></li>
+    <li><a href='#' data-menu-route='/articles'><%= t('header.news') %></a></li>
+    <li><a href='#' data-menu-route='/events'><%= t('header.events') %></a></li>
+    <li><a href='#' data-menu-route='/promotions'><%= t('header.promotions') %></a></li>
+    <li><a href='#' data-menu-route='/jobs'><%= t('header.jobs') %></a></li>
+    <li><a href='#' data-menu-route='/talk_with_city_hall'><%= t('header.city_hall') %></a></li>
   </ul>
 </nav>

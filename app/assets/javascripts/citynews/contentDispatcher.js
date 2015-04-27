@@ -1,50 +1,52 @@
 CityNews.ContentDispatcher = (function() {
-  function ContentDispatcher() {
-    this.cityMap = new CityNews.Map(this);
-    this.path = 'articles/search';//remove in the future
-
+  function ContentDispatcher(path, template) {
+    this.path = path;
+    this.currentTemplate = template;
     this.$container = $('#content');
-    this.initTemplates();//remove in the future
+
+    this.cityMap = new CityNews.Map(this);
   }
 
   var fn = ContentDispatcher.prototype;
 
-  // Remove in the future
-  fn.initTemplates = function(){
-    this.template = Handlebars.compile($('#artilces-template').html());
-  };
-
-  fn.run = function(template, path) {
-    this.template = template;
+  fn.run = function(path, template) {
     this.path = path;
+    this.currentTemplate = template;
+
     this.getContent();
   };
 
   fn.getContent = function() {
-    var cityMapCenter = this.cityMap.getMapCenter();
+    var requestedRoute = '/'+ this.path + '/search',
+        cityMapCenter = this.cityMap.getMapCenter(),
         cityMapCenter_str = JSON.stringify(cityMapCenter);
 
     if(this.mapCenter != cityMapCenter_str) {
       this.mapCenter = cityMapCenter_str;
 
-      $.get(this.path, cityMapCenter)
-      .done($.proxy(this.renderContainer, this, cityMapCenter.distance.toString()));
+      $.get(requestedRoute, cityMapCenter)
+      .done($.proxy(this.render, this, cityMapCenter.distance.toString()))
+      .fail($.proxy(this.fail, this));
     }
   };
 
-  fn.renderContainer = function(distance, data) {
-    this.removeContainer();
-    this.appendContainer(distance, data);
+  fn.render = function(distance, data) {
+    this.removeContent();
+    this.appendContent(distance, data);
 
     this.cityMap.renderPoints(data);
   };
 
-  fn.removeContainer= function() {
+  fn.fail = function() {
+    alert('A problem has happened, please reload the page');
+  };
+
+  fn.removeContent= function() {
     this.$container.find('[data-contentDispatcher-container]').remove();
   };
 
-  fn.appendContainer = function(distance, data) {
-    this.$container.append(this.template(data));
+  fn.appendContent = function(distance, data) {
+    this.$container.append(this.currentTemplate(data));
     this.$container.find('[data-title]').text(distance+' km');
   };
 

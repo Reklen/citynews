@@ -25,6 +25,7 @@ gem 'searchkick'
 group :development, :test do
   gem 'faker'
   gem 'pry-rails'
+  gem 'jasmine'
 end
 
 group :test do

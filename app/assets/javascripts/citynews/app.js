@@ -2,23 +2,50 @@ CityNews.App = (function() {
   'use-strict';
 
   function App() {
-    // this.initTemplates();
-    this.ROUTES = {
-      // '#article-template': this.contentDispatcher.setTemplate(template, path);
-    };
+    var currentPath = 'articles'; //window.location.pathname;
+
+    this.$mainMenu = $('[data-main-menu]');
+    this.templates = this.initTemplates();
+
+    this.contentDispatcher = new CityNews.ContentDispatcher(currentPath, this.templates[currentPath]);
+    this.underlineNewRoute(currentPath);
+
+    new CityNews.FormBuilder();
+    this.addEventListeners();
   }
 
   var fn = App.prototype;
 
-  fn.initTemplates = function() {
-    this.articlesTemplate = Handlebars.compile($('#artilces-template').html());
+  fn.addEventListeners = function() {
+    this.$mainMenu.on('click', '[data-menu-route]', this.displayRouteContent.bind(this));
   };
 
-  fn.run = function() {
-    console.info('=> Running the CityNews app');
-    this.contentDispatcher = new CityNews.ContentDispatcher(this.cityMap);
+  fn.initTemplates = function() {
+    return {
+      '/': Handlebars.compile($('#artilces-template').html()),
+      'articles': Handlebars.compile($('#artilces-template').html()),
+      'events': Handlebars.compile($('#artilces-template').html())
+    };
+  };
 
-    new CityNews.ShareModal($('[data-menu-share]'));
+  fn.displayRouteContent = function(e) {
+    e.preventDefault();
+    var link = $(e.currentTarget),
+        path = link.data('menu-route');
+
+    this.underlineNewRoute(path);
+    this.contentDispatcher.run(path, this.templates[path]);
+  };
+
+  fn.underlineNewRoute = function(path) {
+    var currentDataMenu = "[data-menu-route='"+path+"']",
+        link = this.$mainMenu.find(currentDataMenu);
+
+    if(link) {
+      window.history.pushState(path, "Title", path);
+      this.$mainMenu.find('a').css('text-decoration', 'none');
+      link.css('text-decoration', 'underline');
+    }
   };
 
   return App;
