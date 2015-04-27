@@ -36,6 +36,7 @@ module PopulateDB
   def self.initialize
     self.deleteAll
     self.createUsers
+    self.createEvents(100)
     self.createArticles(60)
   end
 
