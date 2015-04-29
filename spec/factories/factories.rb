@@ -31,18 +31,19 @@ FactoryGirl.define do
     user
   end
 
+  factory :event do
+    title Faker::Lorem.sentence
+    description Faker::Lorem.paragraph
+    picture
+    location
+    user
+    date DateTime.now.to_date
+  end
+
   factory :city_comment do
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
     comment_type true
-    location
-    user
-  end
-
-  factory :event do
-    date DateTime.now.to_date
-    title Faker::Lorem.sentence
-    description Faker::Lorem.paragraph
     location
     user
   end

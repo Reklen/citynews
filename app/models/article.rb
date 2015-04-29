@@ -6,9 +6,6 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :title, :description
 
-  # after_save :reindex_article
-  # after_destroy :reindex_article
-
   searchkick merge_mappings: true, mappings: {
     article: {
       dynamic: 'strict',
@@ -43,10 +40,6 @@ class Article < ActiveRecord::Base
       },
       date: updated_at
     }
-  end
-
-  def reindex_article
-    Article.reindex # or reindex_async
   end
 
   def self.search_by_location(lat, lon, distance)
