@@ -14,7 +14,7 @@ describe ArticlesController do
 
     it 'searchs and responds with a json' do
       article = FactoryGirl.create(:article)
-      article.reindex
+      Article.reindex
       Article.searchkick_index.refresh
 
       get :search, latitude: '22.01', longitude: '22.01', distance: '1000',
@@ -34,7 +34,7 @@ describe ArticlesController do
 
     it "returns a nil object, when not found" do
       article = FactoryGirl.create(:article)
-      article.reindex
+      Article.reindex
       Article.searchkick_index.refresh
 
       get :search, latitude: '2', longitude: '2', distance: '1000',
