@@ -25,7 +25,7 @@ describe Article do
   describe "#search_by_location" do
     it "returns articles near to one point" do
       article = FactoryGirl.create(:article)
-      article.reindex
+      Article.reindex
       Article.searchkick_index.refresh
 
       article_json = {
@@ -35,17 +35,17 @@ describe Article do
         'country' => 'Brasil'
       }
 
-      article = Article.search_by_location(22.02, 22.02, "100km").first
-      expect(article).to include article_json
+      article_searched = Article.search_by_location(22.02, 22.02, "100km").first
+      expect(article_searched).to include article_json
     end
 
     it "doesn't returns any article near to a point" do
       article = FactoryGirl.create(:article)
-      article.reindex
+      Article.reindex
       Article.searchkick_index.refresh
 
-      article = Article.search_by_location(20.02, 20.02, "100km").first
-      expect(article).to be_nil
+      article_searched = Article.search_by_location(20.02, 20.02, "100km").first
+      expect(article_searched).to be_nil
     end
   end
 end
