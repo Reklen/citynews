@@ -35,7 +35,7 @@ describe Article do
         'country' => 'Brasil'
       }
 
-      article_searched = Article.search_by_location(22.02, 22.02, "100km").first
+      article_searched = Article.search_by_location("22.02", "22.02", "100").first
       expect(article_searched).to include article_json
     end
 
@@ -44,7 +44,7 @@ describe Article do
       Article.reindex
       Article.searchkick_index.refresh
 
-      article_searched = Article.search_by_location(20.02, 20.02, "100km").first
+      article_searched = Article.search_by_location("2.02", "2.02", "100").first
       expect(article_searched).to be_nil
     end
   end
