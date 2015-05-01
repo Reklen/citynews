@@ -40,8 +40,17 @@ describe Event do
         'country' => 'Brasil'
       }
 
-      event_searched = Event.search_by_location(22.02, 22.02, "10000km").first
+      event_searched = Event.search_by_location("22.02", "22.02", "10000").first
       expect(event_searched).to include event_json
+    end
+
+    it "doesn't returns any event" do
+      event = FactoryGirl.create(:event)
+      Event.reindex
+      Event.searchkick_index.refresh
+
+      event_searched = Event.search_by_location("0", "0", "1000").first
+      expect(event_searched).to be_nil
     end
   end
 end
