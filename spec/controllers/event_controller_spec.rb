@@ -4,6 +4,14 @@ describe EventsController do
   let(:user) { FactoryGirl.create(:user) }
   before { login_as(user, scope: user) }
 
+  describe 'GET #index' do
+    it 'renders the application index view' do
+      get :index
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:'application/index')
+    end
+  end
+
   describe 'GET #search' do
     it 'responds with a json file' do
       get :search, latitude: '22.01', longitude: '22.01', distance: '100',
