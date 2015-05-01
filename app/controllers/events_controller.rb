@@ -7,11 +7,11 @@ class EventsController < ApplicationController
   end
 
   def search
-    latitude = params[:latitude].to_f
-    longitude = params[:longitude].to_f
-    distance = params[:distance] + 'km'
-
-    render json: Event.search_by_location(latitude, longitude, distance)
+    render json: Event.search_by_location(
+      params[:latitude],
+      params[:longitude],
+      params[:distance]
+    )
   end
 
   def show
@@ -54,12 +54,11 @@ class EventsController < ApplicationController
   end
 
   private
-    def event_params
-      params.require(:event).permit(:title, :description, :date, :user_id, picture_attributes: [:photo])
-    end
+  def event_params
+    params.require(:event).permit(:title, :description, :date, :user_id, picture_attributes: [:photo])
+  end
 
-    def set_event
-      @event = current_user.events.find(params[:id])
-    end
-
+  def set_event
+    @event = current_user.events.find(params[:id])
+  end
 end
