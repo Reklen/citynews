@@ -42,12 +42,16 @@ class Article < ActiveRecord::Base
     }
   end
 
-  def self.search_by_location(lat, lon, distance)
+  def self.search_by_location(latitude, longitude, distance)
+    lat = latitude.to_f
+    lon = longitude.to_f
+    distance_str = "#{distance}km"
+
     articles = Article.search('*', load: false,
       where: {
         location: {
           near: [lat, lon],
-          within: distance
+          within: distance_str
         }
       },
       sort: {

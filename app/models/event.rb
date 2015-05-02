@@ -42,20 +42,21 @@ class Event < ActiveRecord::Base
     }
   end
 
-  def self.search_by_location(lat, lon, distance)
+  def self.search_by_location(latitude, longitude, distance)
+    lat = latitude.to_f
+    lon = longitude.to_f
+    distance_str = "#{distance}km"
+
     events = Event.search('*', load: false,
       where: {
         location: {
           near: [lat, lon],
-          within: distance
+          within: distance_str
         }
       },
-      sort: {
-        created_at: {
-          order: 'desc'
-        }
-      }
+      sort: { created_at: { order: 'desc' } }
     )
+
     events.as_json(except: [:_id, :_index, :_type, :_score])
   end
 end
