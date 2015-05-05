@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'articles/search' => 'articles#search'
   get 'events/search' => 'events#search'
+  get 'articles' => 'application#index'
+  get 'events' => 'application#index'
 
   resources :articles
   resources :events
