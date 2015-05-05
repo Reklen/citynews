@@ -1,10 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :authenticate_user!, except: [:show, :search]
   before_action :set_article, only: [:edit, :update, :destroy]
-
-  def index
-    render 'application/index'
-  end
 
   def search
     render json: Article.search_by_location(

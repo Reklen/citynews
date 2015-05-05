@@ -1,10 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :authenticate_user!, except: [:show, :search]
   before_action :set_event, only: [:edit, :update, :destroy]
-
-  def index
-    render 'application/index'
-  end
 
   def search
     render json: Event.search_by_location(
