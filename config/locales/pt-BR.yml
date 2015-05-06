@@ -2,7 +2,7 @@ pt-BR:
   page_title: O jornal das regiões
 
   header:
-    title: REPRESA DE FURNAS
+    title: TRAVELER
     subtitle:  O JORNAL DINÂMICO
     share: compartilhe
     home: Principal
@@ -21,7 +21,7 @@ pt-BR:
       form_new_title: Compartilhe uma notícia
       form_edit_title: Edite a notícia
     events:
-      title: Eventos
+      title: 'Eventos em um raio de '
       form_new_title: Compartilhe um evento
       form_edit_title: Edite o evento
     promotions:
