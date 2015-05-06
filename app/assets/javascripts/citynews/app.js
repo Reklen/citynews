@@ -6,7 +6,7 @@ CityNews.App = (function() {
 
     this.$mainMenu = $('[data-main-menu]');
     this.templates = this.initTemplates();
-    this.contentLoader = new CityNews.ContentLoader(currentPath, this.templates[currentPath]);
+    this.contentLoader = new CityNews.ContentLoader(this.templates[currentPath]);
     this.underlineNewRoute(currentPath);
 
     new CityNews.FormBuilder();
@@ -23,7 +23,7 @@ CityNews.App = (function() {
     return {
       '/': Handlebars.compile($('#artilces-template').html()),
       '/articles': Handlebars.compile($('#artilces-template').html()),
-      '/events': Handlebars.compile($('#artilces-template').html())
+      '/events': Handlebars.compile($('#events-template').html())
     };
   };
 
@@ -33,7 +33,7 @@ CityNews.App = (function() {
         path = link.data('menu-route');
 
     this.underlineNewRoute(path);
-    this.contentLoader.run(path, this.templates[path]);
+    this.contentLoader.run(this.templates[path]);
   };
 
   fn.underlineNewRoute = function(path) {

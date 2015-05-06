@@ -1,6 +1,5 @@
 CityNews.ContentLoader = (function() {
-  function ContentLoader(path, template) {
-    this.path = path;
+  function ContentLoader(template) {
     this.currentTemplate = template;
     this.$container = $('#content');
 
@@ -9,8 +8,7 @@ CityNews.ContentLoader = (function() {
 
   var fn = ContentLoader.prototype;
 
-  fn.run = function(path, template) {
-    this.path = path;
+  fn.run = function(template) {
     this.currentTemplate = template;
     this.getContent();
   };
@@ -45,7 +43,6 @@ CityNews.ContentLoader = (function() {
   };
 
   fn.appendContent = function(distance, data) {
-    debugger;
     this.$container.append(this.currentTemplate(data));
     this.$container.find('[data-title]').text(distance+' km');
   };
