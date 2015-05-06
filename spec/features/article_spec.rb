@@ -62,7 +62,7 @@ feature "Article management" do
   end
 
   scenario "Show all articles" do
-    xit "pending show all articles" do
+    it "pending show all articles" do
       visit root_path
 
       first(".nav-main").click_link('Notícias')
