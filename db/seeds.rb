@@ -97,7 +97,7 @@ module PopulateDB
         title: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph(3),
         date: DateTime.now.to_date,
-        picture_attributes: { photo: File.new("app/assets/images/medium/springfield.jpg") }
+        picture_attributes: { photo: File.new("app/assets/images/medium/simpsons.jpg") }
       )
 
       place = PLACES.sample

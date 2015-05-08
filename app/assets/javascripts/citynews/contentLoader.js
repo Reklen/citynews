@@ -1,28 +1,25 @@
-CityNews.ContentDispatcher = (function() {
-  function ContentDispatcher(path, template) {
-    this.path = path;
+CityNews.ContentLoader = (function() {
+  function ContentLoader(template) {
     this.currentTemplate = template;
     this.$container = $('#content');
 
     this.cityMap = new CityNews.Map(this);
   }
 
-  var fn = ContentDispatcher.prototype;
+  var fn = ContentLoader.prototype;
 
-  fn.run = function(path, template) {
-    this.path = path;
+  fn.run = function(template) {
     this.currentTemplate = template;
-
     this.getContent();
   };
 
   fn.getContent = function() {
-    var requestedRoute = '/'+ this.path + '/search',
+    var requestedRoute = window.location.pathname + '/search',
         cityMapCenter = this.cityMap.getMapCenter(),
-        cityMapCenter_str = JSON.stringify(cityMapCenter);
+        currentContent= requestedRoute + JSON.stringify(cityMapCenter);
 
-    if(this.mapCenter != cityMapCenter_str) {
-      this.mapCenter = cityMapCenter_str;
+    if(this.oldContent != currentContent) {
+      this.oldContent = currentContent;
 
       $.get(requestedRoute, cityMapCenter)
       .done($.proxy(this.render, this, cityMapCenter.distance.toString()))
@@ -42,7 +39,7 @@ CityNews.ContentDispatcher = (function() {
   };
 
   fn.removeContent= function() {
-    this.$container.find('[data-contentDispatcher-container]').remove();
+    this.$container.find('[data-contentLoader-container]').remove();
   };
 
   fn.appendContent = function(distance, data) {
@@ -50,5 +47,5 @@ CityNews.ContentDispatcher = (function() {
     this.$container.find('[data-title]').text(distance+' km');
   };
 
-  return ContentDispatcher;
+  return ContentLoader;
 })();
