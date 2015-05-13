@@ -4,8 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    @articles = Article.last(2).reverse
-    @events = Event.last(2).reverse
-    @city_comments = CityComment.last(4).reverse
+  end
+
+  def search
+    articles = Article.search_by_location(
+      params[:latitude],
+      params[:longitude],
+      params[:distance]
+    )
+
+    events = Event.search_by_location(
+      params[:latitude],
+      params[:longitude],
+      params[:distance]
+    )
+
+    render json: { article: articles, event: events }
   end
 end
