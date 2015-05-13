@@ -13,8 +13,18 @@ CityNews.ContentLoader = (function() {
     this.getContent();
   };
 
+  fn.getCurrentRoute = function() {
+    var location;
+    if (window.location.pathname === "/") {
+      location = 'search';
+    }else {
+      location = '/search';
+    }
+    return window.location.href + location;
+  };
+
   fn.getContent = function() {
-    var requestedRoute = window.location.pathname + '/search',
+    var requestedRoute = this.getCurrentRoute(),
         cityMapCenter = this.cityMap.getMapCenter(),
         currentContent= requestedRoute + JSON.stringify(cityMapCenter);
 
@@ -23,7 +33,7 @@ CityNews.ContentLoader = (function() {
 
       $.get(requestedRoute, cityMapCenter)
       .done($.proxy(this.render, this, cityMapCenter.distance.toString()))
-      .fail($.proxy(this.fail, this));
+      .fail($.proxy(this.fail, this, requestedRoute));
     }
   };
 
@@ -34,8 +44,8 @@ CityNews.ContentLoader = (function() {
     this.cityMap.renderPoints(data);
   };
 
-  fn.fail = function() {
-    alert('A problem has happened, please reload the page');
+  fn.fail = function(request, data) {
+    console.log(request, data);
   };
 
   fn.removeContent= function() {

@@ -21,7 +21,7 @@ CityNews.App = (function() {
 
   fn.initTemplates = function() {
     return {
-      '/': Handlebars.compile($('#artilces-template').html()),
+      '/': Handlebars.compile($('#main-template').html()),
       '/articles': Handlebars.compile($('#artilces-template').html()),
       '/events': Handlebars.compile($('#events-template').html())
     };
