@@ -8,13 +8,15 @@
     </article>
 
     <section class="main-news">
-      <div class='grid-75'>
-        <div>
+      <div class="articles">
+        <div class="grid-75">
           <h3><%= t('page.news.title') %><span data-title></span></h3>
           {{#each article}}
             <a class='grid-25' href="articles/{{id}}">
-              <article class="card">
-                <img src="{{photo_url}}" class="img-article">
+              <article class="card small-height">
+                <div class="img-wrapper">
+                  <img src="{{photo_url}}" class="img-article">
+                </div>
 
                 <div class="mini-news">
                   <div class="author">
@@ -28,37 +30,35 @@
             </a>
           {{/each}}
         </div>
+        <div class='side-news grid-25'>
+          <div>
+            <h3>Mais Visitadas</h3>
+          </div>
 
-        <div>
-          <h3><%= t('page.events.title') %><span data-title></span></h3>
-          {{#each event}}
-            <a class='grid-25' href="events/{{id}}">
-              <article class="card">
-                <img src="{{photo_url}}" class="img-article">
-
-                <div class="mini-news">
-                  <div class="author">
-                    <img src="{{author_picture}}" class="user-logo">
-                    por: {{author_name}} - {{city}} - {{prettifyDate date}}
-                  </div>
-
-                  <h4>{{title}}</h4>
-                </div>
-              </article>
-            </a>
-          {{/each}}
+          <div>
+            <h3>Escritores mais lidos</h3>
+          </div>
         </div>
       </div>
 
+      <div class="events">
+        <h3><%= t('page.events.title') %><span data-title></span></h3>
+        {{#each event}}
+          <a class='grid-50' href="events/{{id}}">
+            <article class="card medium-height">
+              <img src="{{photo_url}}" class="img-article">
 
-      <div class='grid-25'>
-        <div>
-          <h3>Mais Visitadas</h3>
-        </div>
+              <div class="mini-news">
+                <div class="author">
+                  <img src="{{author_picture}}" class="user-logo">
+                  por: {{author_name}} - {{city}} - {{prettifyDate date}}
+                </div>
 
-        <div>
-          <h3>Escritores mais lidos</h3>
-        </div>
+                <h4>{{title}}</h4>
+              </div>
+            </article>
+          </a>
+        {{/each}}
       </div>
     </section>
   </div>
