@@ -19,16 +19,12 @@ a {
   color: $color;
 }
 
-// .main-logo a {
-//   @include font-style('Playfair Display SC', serif, 1.8em);
-// }
-
-.sub-logo {
-  @include font-style('Goudy Bookletter 1911', serif, 1.2em, #DC3522);
+.main-logo a {
+  @include font-style('Playfair Display SC', serif, 0.6em);
 }
 
-.weather {
-  @include font-style('Merriweather Sans', sans-serif, 2em);
+.sub-logo {
+  @include font-style('Goudy Bookletter 1911', serif, 0.8em, #DC3522);
 }
 
 .container {
@@ -42,17 +38,4 @@ a {
 time {
   font-size: 0.8em;
   color: #777;
-}
-
-.main-logo a {
-  font-family: serif;
-  font-size: 1.5em;
-  color: #353535;
-}
-
-.sub-header a {
-  font-family: 'Aleo',serif;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  color: #353535;
 }
