@@ -3,27 +3,21 @@
     <h2><%= t('page.news.title') %><span data-title></span></h2>
     {{#if this}}
       {{#each this}}
-        <div class="grid-25">
-          <a href="articles/{{id}}">
-            <div class='card'>
-              <article class="short-new">
-                <div class="img-wrapper">
-                  <img src="{{photo_url}}" class="img-article">
-                </div>
+        <a class='grid-25' href="articles/{{id}}">
+          <article class="card">
+            <img src="{{photo_url}}" class="img-article">
 
-                <div class="mini-news">
-                  <div class="author">
-                    <span><img src="{{author_picture}}" class="user-logo"></span>
-                    <span>por: {{author_name}} - {{city}} - {{prettifyDate date}}</span>
-                  </div>
+            <div class="mini-news">
+              <div class="author">
+                <img src="{{author_picture}}" class="user-logo">
+                por: {{author_name}} - {{city}} - {{prettifyDate date}}
+              </div>
 
-                  <h4>{{title}}</h4>
-                </div>
-
-              </article>
+              <h4>{{title}}</h4>
             </div>
-          </a>
-        </div>
+
+          </article>
+        </a>
       {{/each}}
     {{else}}
       <%= t('page.no_content') %>

@@ -31,3 +31,6 @@ Reindex Database to ensure that all data are sync with Elasticsearch
 ```console
 rake searchkick:reindex:all
 ```
+
+You can select your on map style
+http://leaflet-extras.github.io/leaflet-providers/preview/index.html

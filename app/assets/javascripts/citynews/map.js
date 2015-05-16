@@ -5,7 +5,6 @@ CityNews.Map = (function() {
   function Map(app){
     this.app = app;
     this.titleLayerStr = 'http://{s}.tiles.mapbox.com/v4/rafaelrochasilva.li0cpini/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicmFmYWVscm9jaGFzaWx2YSIsImEiOiJhYWw3VzdFIn0.1fvXksiFzqKFHayxNJxjww';
-
     this.getUserPosition();
     this.initMap();
     this.addEventListeners();
@@ -34,6 +33,7 @@ CityNews.Map = (function() {
   fn.initTileLayer = function() {
     this.tileLayer = L.tileLayer(this.titleLayerStr, {
       maxZoom: MAX_ZOOM,
+      subdomain: 'abcd'
     }).addTo(this.map);
   };
 
