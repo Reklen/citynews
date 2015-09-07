@@ -42,10 +42,12 @@ header {
   top: 0;
   float: left;
   @include header-user-block(15%);
+
   .main-logo {
     margin: 0;
     padding: 0;
   }
+
   .sub-logo {
     padding-top: 0;
     margin: 0;
@@ -53,6 +55,7 @@ header {
     top: -10px;
   }
 }
+
 .nav-main {
   width: 70%;
   float: left;
@@ -69,11 +72,17 @@ header {
     }
   }
 }
+
 .nav-user {
   @include header-user-block(15%);
-  ul {
+
+  .img-menu {
     margin: 0;
+  }
+
+  ul {
     padding: 0;
+
     li {
       display: inline-block;
       padding: 0px 10px;
@@ -82,10 +91,11 @@ header {
       img {
         vertical-align: middle;
       }
-    }
-    li:hover{
-      .drop-down {
-        display: inline;
+
+      &:hover {
+        .drop-down {
+          display: inline;
+        }
       }
     }
   }
