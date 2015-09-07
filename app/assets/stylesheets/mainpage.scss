@@ -48,7 +48,7 @@
   width: 96%;
   float: left;
   margin: 4%;
-  height: auto;
+  overflow: hidden;
 }
 
 .side-news {
@@ -61,8 +61,13 @@
 }
 
 .medium-height {
-  height: 300px;
+  height: 310px;
 }
+
+.big-height {
+  height: 410px;
+}
+
 
 .img-wrapper {
   width: 100%;
