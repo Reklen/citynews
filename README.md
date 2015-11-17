@@ -1,36 +1,20 @@
-**CityNews** is a webapp made to share news and events all arround the world. By just selecting an area in the map by dragging or zooming, you can view news from diferent cities, neighborhood, countries and continents.
+# My Fabulous Recipe
 
-##To run this project you need to.
-Install bower globally
-```console
-npm install bower -g
-```
-Run
-```
-bower install
-```
+This recipe for **cereal and milk** has been passed down my family for months.
 
-Install Elasticsearch
-```console
-brew install elasticsearch
-```
+## Ingredients
 
-Run the following comand to start elastic search(port 9200)
-```console
-elasticsearch
-```
+* Cereal (you can find cool cereals [here](www.example.com/coolcereal)
+* Milk
 
-### Setup Datas to test the project
-Run the following command to populate the database
-```ruby
-rake db:seed
-```
-INFO: Certify that Elasticsearch is running before running the seed file
 
-Reindex Database to ensure that all data are sync with Elasticsearch
-```console
-rake searchkick:reindex:all
-```
+## Directions
 
-You can select your on map style
-http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+If I were writing these out as _code_, it might look something like this:
+
+```
+ if bowl is empty:
+    add cereal
+if bowl only has cereal in it:
+    add milk
+```
