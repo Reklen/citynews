@@ -18,7 +18,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'simple_form'
-gem 'paperclip', '~> 4.2'
+gem 'paperclip', '~> 5.2'
 
 gem 'searchkick'
 
